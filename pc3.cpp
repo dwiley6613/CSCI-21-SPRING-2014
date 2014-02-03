@@ -157,12 +157,11 @@ int asciiValue (char c)
  */
 string toLower (string input)
 {
-    int count = 0;
-  	while (input [count] != '\0')
+    for (int count  = 0; count < input.length(); count++)
   	{
-  	    input  [count] = tolower(input [count]);
-  	    count++;
+  	    input [count] = tolower(input [count]);
   	}
+  	return input;
 }
 
 /*
@@ -172,12 +171,11 @@ string toLower (string input)
  */
 string toUpper (string input)
 {
-int count = 0;
-  	while (input [count] != '\0')
+  	for (int count  = 0; count < input.length(); count++)
   	{
-  	    input  [count] = toupper(input [count]);
-  	    count++;
+  	    input [count] = toupper(input [count]);
   	}
+  	return input;
 }
 
 /*
@@ -263,9 +261,7 @@ void unittest ()
 	} catch (bool b) {
 		cout << "# FAILED TEST 9 asciiValue (a) #\n";
 	}
-	cout << "test1";
-	try {
-	    cout << "test2";
+		try {
 		btassert<bool>(toLower("HELLO") == "hello");
 		cout << "Passed TEST 10: toLower (HELLO)\n";
 	} catch (bool b) {
