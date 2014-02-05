@@ -5,6 +5,7 @@
  *date created 2/3/2014
  *date modified 2/3/2014
  *stackoverflow.com
+ *Rob Bishop
  */
 #include <cassert>
 #include <cstdlib>
@@ -71,9 +72,10 @@ string makeString (string label, double value, char separator)
  */
 char stringToChar (string value)
 {
-	if ((value.empty() == true) || (value.length() > 1))
-	    return '\0';
-	else return value[0];
+	if (value.size() == 1)
+	    return value[0];
+	    
+	else return '\0';
 }
 
 /*
@@ -136,10 +138,9 @@ double stringToDouble (string value)
  */
 bool stringToBool (string value)
 {
-	if ((value[0] == 'f') || (value[0] == 'F'))
-	    return false;
-	else if ((value[0] =='t') || (value[0] == 'T'))
+	if (toupper(value[0]) == 'T')
 	    return true;
+	
 	else
 	    return false;
 }
