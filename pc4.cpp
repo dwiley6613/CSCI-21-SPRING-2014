@@ -55,10 +55,10 @@ int main (int argc, char* argv[])
  */
 string makeString (string label, double value, char separator)
 {
-    std::ostringstream str2;
-    str2 << label << " " << separator << " " << value;
+    stringstream tempStr;
+    tempStr << label << " " << separator << " " << value;
 
-	return str2.str();
+	return tempStr.str();
 }
 
 /*
