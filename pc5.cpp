@@ -102,8 +102,12 @@ int getStats(string s, int& alphaCount, int& digitCount)
     alphaCount = 0; digitCount = 0;
     for (unsigned int count  = 0; count < s.length(); count++)
   	{
+  	    //checking ascii values in the number range
+  	    
   	    if (s [count] > 47 && s [count] < 58)
   	        digitCount++;
+  	    //checking ascii values in the alphabet range
+  	    
   	    else if (s [count] > 64 && s [count] < 123)
   	        alphaCount++;
   	} 
