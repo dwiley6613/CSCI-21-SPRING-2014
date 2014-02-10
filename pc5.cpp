@@ -14,7 +14,7 @@ void printMessage(string message);
 int getAnswer();
 int findLarger(int n1, int n2);
 int getStats(string s, int& alphaCount, int& digitCount);
-string buildMessage(string s, bool allCaps);
+string buildMessage(string s = "", bool allCaps = false);
 
 
 /* for unit testing -- do not alter */
@@ -223,7 +223,7 @@ void unittest ()
 	}
 	
 	try {
-		btassert<bool>(buildMessage("hello", false) == "Message: hello");
+		btassert<bool>(buildMessage("hello") == "Message: hello");
 		cout << "Passed TEST 11: buildMessage(\"hello\")\n";
 	} catch (bool b) {
 		cout << "# FAILED TEST 11 buildMessage(\"hello\") #\n";
@@ -251,7 +251,7 @@ void unittest ()
 	}
 	
 	try {
-		btassert<bool>(buildMessage("", false) == "Message: empty");
+		btassert<bool>(buildMessage() == "Message: empty");
 		cout << "Passed TEST 15: buildMessage()\n";
 	} catch (bool b) {
 		cout << "# FAILED TEST 15 buildMessage() #\n";
