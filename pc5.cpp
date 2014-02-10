@@ -1,5 +1,13 @@
 /*
- * Programming Challenge 5
+ *Programming Challenge 5
+ * pc5.cpp
+ *This program demostrates the use of strings comparison decissions
+ *and default aurguments in the function definition
+ *Donald Wiley
+ *date created 2/3/2014
+ *date modified 2/3/2014
+ *cplusplus.com
+ *Rob Bishop
  */
 #include <cassert>
 #include <iostream>
@@ -22,7 +30,7 @@ template <typename X, typename A>
 void btassert(A assertion);
 void unittest ();
 
-int main (int argc, char* argv[])
+int main ()
 {
 	unittest();
 	
@@ -92,7 +100,7 @@ int findLarger(int n1, int n2)
 int getStats(string s, int& alphaCount, int& digitCount)
 {
     alphaCount = 0; digitCount = 0;
-    for (int count  = 0; count < s.length(); count++)
+    for (unsigned int count  = 0; count < s.length(); count++)
   	{
   	    if (s [count] > 47 && s [count] < 58)
   	        digitCount++;
@@ -119,7 +127,7 @@ string buildMessage(string s, bool allCaps)
 
     else if (allCaps == true)
         {
-            for (int count = 0; count < s.length(); count++)
+            for (unsigned int count = 0; count < s.length(); count++)
                 {
                 s[count] = toupper(s[count]);
                 tempString = "Message: " + s;
