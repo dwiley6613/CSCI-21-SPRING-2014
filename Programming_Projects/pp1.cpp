@@ -1,7 +1,7 @@
 /*
  *Programming Project 
  * pp1.cpp
- *This program
+ *This program demostrate the ability to manipulate string and arrays
  *Donald Wiley
  *date created 2/12/2014
  *date modified 2/12/2014
@@ -14,27 +14,28 @@
 using namespace std;
 
 /*
-count the number of alphabetic characters and the number of numeric characters in a string
-    (function name: countCharacters; parameters: string, int&, int&; return value: void)
-    
-capitalize/lowercase every other character in a string -- first character of the string should be capitalized, the second character lowercase, etc.
-    (function name: upAndDown; parameter: string; return value: string)
-    
-count the number of words--delimited by space characters--in a string;
-assume that the parameter will never have multiple spaces back-to-back, and will never begin or end with spaces
-    (function name: countWords; parameter: string; return value: int)
-    
-compute the average of the values in an array; assume the function will never receive an array of size 0
-    (function name: computeAverage; parameters: int[], int; return value: int)
-    
-identify the smallest value in an array; assume the function will never receive an array of size 0
-    (function name: findMinValue; parameters: int[], int; return value: int)
-    
-identify the largest value in an array; assume the function will never receive an array of size 0
-    (function name: findMaxValue; parameters: int[], int; return value: int)
-*/
+ *
+ *count the number of alphabetic characters and the number of numeric characters in a string
+ *   (function name: countCharacters; parameters: string, int&, int&; return value: void)
+ *   
+ *capitalize/lowercase every other character in a string -- first character of the string should be capitalized, the second character lowercase, etc.
+ *   (function name: upAndDown; parameter: string; return value: string)
+ *    
+ *count the number of words--delimited by space characters--in a string;
+ *assume that the parameter will never have multiple spaces back-to-back, and will never begin or end with spaces
+ *    (function name: countWords; parameter: string; return value: int)
+ *    
+ *compute the average of the values in an array; assume the function will never receive an array of size 0
+ *    (function name: computeAverage; parameters: int[], int; return value: int)
+ *    
+ *identify the smallest value in an array; assume the function will never receive an array of size 0
+ *    (function name: findMinValue; parameters: int[], int; return value: int)
+ *    
+ *identify the largest value in an array; assume the function will never receive an array of size 0
+ *    (function name: findMaxValue; parameters: int[], int; return value: int)
+ */
 
-// CODE HERE -- FUNCTION DEFINITIONS
+/* -- FUNCTION DEFINITIONS -- */
 
 void countCharacters( string inputStr, int& alphaCnt, int& numCnt);
 string upAndDown(string inputStr);
@@ -57,9 +58,7 @@ int main (int argc, char* argv[])
 	return 0;
 }
 
-/*
- * Function coding here
- */
+/* Function coding here */
 
 /*
  *count the number of alphabetic characters and the number of numeric characters in a string
@@ -135,7 +134,11 @@ int countWords(string inputStr)
  */
 int findMinValue(int inputArray[], int arraySize)
 {
-    
+    int minVal = inputArray[0];
+    for (int cnt = 1; cnt < arraySize; cnt++)
+        if (inputArray[cnt] < minVal)
+            minVal = inputArray[cnt];
+    return minVal;
 }
 
 /*identify the largest value in an array; assumes the function will never receive an array of size 0
@@ -145,7 +148,11 @@ int findMinValue(int inputArray[], int arraySize)
  */
 int findMaxValue(int inputArray[], int arraySize)
 {
-    
+ int maxVal = inputArray[0];
+    for (int cnt = 1; cnt < arraySize; cnt++)
+        if (inputArray[cnt] > maxVal)
+            maxVal = inputArray[cnt];
+    return maxVal;   
 }
 
 /*
