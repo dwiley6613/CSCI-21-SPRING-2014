@@ -13,3 +13,5 @@ pc4:pc4.cpp
 	g++ -o pc4 pc4.cpp
 pc5:pc5.cpp
 	g++ $(Flag) -o pc5 pc5.cpp
+pc6:pc6.cpp
+	g++ -o pc6 pc6.cpp
