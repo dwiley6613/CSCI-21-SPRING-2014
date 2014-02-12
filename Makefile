@@ -18,3 +18,8 @@ pc6:Programming_Challenges/pc6
 
 Programming_Challenges/pc6:Programming_Challenges/pc6.cpp
 	g++ $(Flag) -o Programming_Challenges/pc6 Programming_Challenges/pc6.cpp
+
+pp1:Programming_Projects/pp1
+
+Programming_Projects/pp1:Programming_Projects/pp1.cpp
+	g++ -o Programming_Projects/pp1 Programming_Projects/pp1.cpp
