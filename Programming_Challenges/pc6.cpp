@@ -1,5 +1,13 @@
 /*
- * Programming Challenge 6
+ *Programming Challenge 6
+ * pc6.cpp
+ *This program demostrates the use of arrays
+ *Donald Wiley
+ *date created 2/11/2014
+ *date modified 2/13/2014
+ *cplusplus.com
+ *stackoverflow.com
+ *Rob Bishop
  */
 #include <cassert>
 #include <iostream>
