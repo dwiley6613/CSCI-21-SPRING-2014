@@ -13,5 +13,8 @@ pc4:pc4.cpp
 	g++ -o pc4 pc4.cpp
 pc5:pc5.cpp
 	g++ $(Flag) -o pc5 pc5.cpp
-pc6:pc6.cpp
-	g++ $(Flag) -o pc6 pc6.cpp
+
+pc6:Programming_Challenges/pc6
+
+Programming_Challenges/pc6:Programming_Challenges/pc6.cpp
+	g++ $(Flag) -o Programming_Challenges/pc6 Programming_Challenges/pc6.cpp
