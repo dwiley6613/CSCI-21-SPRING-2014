@@ -38,7 +38,7 @@ string prepareForDisplay (int values[], int size, char separator)
 {
     stringstream  msg;
     
-    for (unsigned int count = 0; count < size; count++)   
+    for (int count = 0; count < size; count++)   
         {
             if (count == 0)
                 msg << (values[count]);
