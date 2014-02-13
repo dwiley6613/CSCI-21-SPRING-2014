@@ -28,3 +28,8 @@ pc7:Programming_Challenges/pc7
 
 Programming_Challenges/pc7:Programming_Challenges/pc7.cpp
 	g++ $(Flag) -o Programming_Challenges/pc7 Programming_Challenges/pc7.cpp
+
+pc8:Programming_Challenges/pc8
+
+Programming_Challenges/pc8:Programming_Challenges/pc8.cpp
+	g++ $(Flag) -o Programming_Challenges/pc8 Programming_Challenges/pc8.cpp
