@@ -23,3 +23,8 @@ pp1:Programming_Projects/pp1
 
 Programming_Projects/pp1:Programming_Projects/pp1.cpp
 	g++ -o Programming_Projects/pp1 Programming_Projects/pp1.cpp
+
+pc7:Programming_Challenges/pc7
+
+Programming_Challenges/pc7:Programming_Challenges/pc7.cpp
+	g++ -o Programming_Challenges/pc7 Programming_Challenges/pc7.cpp
