@@ -1,7 +1,7 @@
 /*
  *Programming Challenge 7
  * pc7.cpp
- *This program demostrates the 
+ *This program demostrates the use of data from an input file
  *Donald Wiley
  *date created 2/12/2014
  *date modified 2/12/2014
