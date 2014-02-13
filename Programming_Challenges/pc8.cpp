@@ -67,10 +67,13 @@ void processArguments (int argc, char* argv[])
             
         else if (strcmp(argv[cnt], "20") == 0)
             onTwenty ();
+            
         else if (strcmp(argv[cnt], "30") == 0)
             onThirty ();
+            
         else if (strcmp(argv[cnt], "40") == 0)
             onForty ();
+            
         else if (strcmp(argv[cnt], "50") == 0)
             onFifty ();
         else

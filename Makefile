@@ -1,18 +1,9 @@
 Flag = -Wall -Wextra -Werror -pedantic
 
-pc1:pc1.cpp
-	g++ -o pc1 pc1.cpp
+pc5:Programming_Challenges/pc5
 
-pc2:pc2.cpp
-	g++ -o pc2 pc2.cpp
-	
-pc3:pc3.cpp
-	g++ -o pc3 pc3.cpp
-	
-pc4:pc4.cpp
-	g++ -o pc4 pc4.cpp
-pc5:pc5.cpp
-	g++ $(Flag) -o pc5 pc5.cpp
+Proramming_Challenges/pc5:Programming_Challenges/pc5.cpp
+	g++ $(Flag) -o Programming_Challenges/pc5 Programming_Challenges/pc5.cpp
 
 pc6:Programming_Challenges/pc6
 
@@ -33,3 +24,8 @@ pc8:Programming_Challenges/pc8
 
 Programming_Challenges/pc8:Programming_Challenges/pc8.cpp
 	g++ $(Flag) -o Programming_Challenges/pc8 Programming_Challenges/pc8.cpp
+
+pc9:Programming_Challenges/pc9
+
+Programming_Challenges/pc9:Programming_Challenges/pc9.cpp
+	g++ -o Programming_Challenges/pc9 Programming_Challenges/pc9.cpp
