@@ -29,3 +29,8 @@ pc9:Programming_Challenges/pc9
 
 Programming_Challenges/pc9:Programming_Challenges/pc9.cpp
 	g++ -o Programming_Challenges/pc9 Programming_Challenges/pc9.cpp
+
+pc10:Programming_Challenges/pc10
+
+Programming_Challenges/pc10:Programming_Challenges/pc10.cpp
+	g++ -o Programming_Challenges/pc10 Programming_Challenges/pc10.cpp
