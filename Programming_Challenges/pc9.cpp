@@ -106,12 +106,11 @@ class Spaceship
 		 */
 		string toString () const
 		{
-		    stringstream tempStr, temp2;
-		    string temp;
-		    cout.setf (ios::fixed);
-		    cout.setf (ios::showpoint);
-		    cout.precision (2);
-		    cout << topSpeed << endl;
+		    stringstream tempStr;
+
+		    tempStr.setf (ios::fixed);
+		    tempStr.setf (ios::showpoint);
+		    tempStr.precision (2);
 		    tempStr << name << ", top speed: warp " << topSpeed <<  ", fuel source: " << fuelSource << ", crew capacity: " << crewCapacity;
 		    return tempStr.str();
 		}

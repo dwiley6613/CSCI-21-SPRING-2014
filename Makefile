@@ -34,3 +34,8 @@ pc10:Programming_Challenges/pc10
 
 Programming_Challenges/pc10:Programming_Challenges/pc10.cpp
 	g++ -o Programming_Challenges/pc10 Programming_Challenges/pc10.cpp
+
+pc11:Programming_Challenges/pc11
+
+Programming_Challenges/pc11:Programming_Challenges/pc11.cpp
+	g++ -o Programming_Challenges/pc11 Programming_Challenges/pc11.cpp
