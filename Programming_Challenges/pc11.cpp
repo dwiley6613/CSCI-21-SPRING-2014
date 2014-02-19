@@ -26,7 +26,7 @@ class Prize
 		 *        at the end of name
 		 * @param newValue unsigned int containing a value for this Prize; default argument is 0
 		 */
-	    Prize(string newName = "no name", unsigned int newValue = 0)
+	    Prize(string newName = "no name!", unsigned int newValue = 0)
 	    {
 	        name = newName;
 	        value = newValue;
@@ -35,8 +35,8 @@ class Prize
 	            for (unsigned int cnt = 0; cnt < name.length(); cnt++)
 	                toupper(name[cnt]);
 	            name = name + "!";
+	        
 	        }
-            
 	    }
 		/*
 		 * Get this Prize's name

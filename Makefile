@@ -28,12 +28,12 @@ Programming_Challenges/pc8:Programming_Challenges/pc8.cpp
 pc9:Programming_Challenges/pc9
 
 Programming_Challenges/pc9:Programming_Challenges/pc9.cpp
-	g++ -o Programming_Challenges/pc9 Programming_Challenges/pc9.cpp
+	g++ $(Flag) -o Programming_Challenges/pc9 Programming_Challenges/pc9.cpp
 
 pc10:Programming_Challenges/pc10
 
 Programming_Challenges/pc10:Programming_Challenges/pc10.cpp
-	g++ -o Programming_Challenges/pc10 Programming_Challenges/pc10.cpp
+	g++ $(Flag) -o Programming_Challenges/pc10 Programming_Challenges/pc10.cpp
 
 pc11:Programming_Challenges/pc11
 
