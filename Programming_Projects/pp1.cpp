@@ -4,7 +4,7 @@
  *This program demostrate the ability to manipulate string and arrays
  *Donald Wiley
  *date created 2/12/2014
- *date modified 2/12/2014
+ *date modified 2/19/2014
  */
  
 #include <cassert>
@@ -35,7 +35,7 @@ using namespace std;
  *    (function name: findMaxValue; parameters: int[], int; return value: int)
  */
 
-/* -- FUNCTION DEFINITIONS -- */
+/* -- FUNCTION DECLARATIONS -- */
 
 void countCharacters( string inputStr, int& alphaCnt, int& numCnt);
 string upAndDown(string inputStr);
@@ -51,14 +51,14 @@ template <typename X, typename A>
 void btassert(A assertion);
 void unittest ();
 
-int main (int argc, char* argv[])
+int main (int , char **)
 {
 	unittest();
 	
 	return 0;
 }
 
-/* Function coding here */
+/* Function Definition coding here */
 
 /*
  *count the number of alphabetic characters and the number of numeric characters in a string
