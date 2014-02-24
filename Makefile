@@ -43,4 +43,4 @@ Programming_Challenges/pc11:Programming_Challenges/pc11.cpp
 pc12:Programming_Challenges/pc12
 
 Programming_Challenges/pc12:Programming_Challenges/pc12.cpp
-	g++ -o Programming_Challenges/pc12 Programming_Challenges/pc12.cpp
+	g++ $(Flag) -o Programming_Challenges/pc12 Programming_Challenges/pc12.cpp
