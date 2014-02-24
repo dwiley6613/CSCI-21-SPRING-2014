@@ -33,7 +33,7 @@ class Prize
 	        if (newValue > 100)
 	        {
 	            for (unsigned int cnt = 0; cnt < name.length(); cnt++)
-	                toupper(name[cnt]);
+	                name[cnt] = static_cast<char> (toupper(name[cnt]));
 	            name = name + "!";
 	        
 	        }
