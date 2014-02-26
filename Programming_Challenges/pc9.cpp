@@ -137,6 +137,16 @@ int main (int, char**)
 
 // CODE HERE -- FUNCTION DEFINITIONS
 
+//
+// Grader comments 2014.02.26
+//
+// Boyd wanted the code here. It would have looked like this:
+//
+// string Spaceship::toString() const
+// {
+//     etc.
+// }
+
 
 /*
  * Unit testing functions. Do not alter.
