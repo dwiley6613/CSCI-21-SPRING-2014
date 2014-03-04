@@ -26,7 +26,7 @@ void selectionSort (int theArray[], unsigned int size);
  * @param index1 the position of the first value to be swapped
  * @param index2 the position of the second value to be swapped
  */
-void swapValues (int values[], int index1, int index2);
+bool swapValues (int values[], int index1, int index2);
 
 /* for unit testing -- do not alter */
 template <typename X, typename A>
@@ -34,7 +34,7 @@ void btassert(A assertion);
 void unittest ();
 bool compareArrays (int arrayOne[], int arrayTwo[], unsigned int size);
 
-int main (int argc, char* argv[])
+int main (int, char**)
 {
 	unittest();
 	
@@ -45,22 +45,30 @@ int main (int argc, char* argv[])
 
 void bubbleSort (int theArray[], unsigned int size)
 {
-   /* procedure bubbleSort( A : list of sortable items )
-	n = length(A)
-	repeat
-		swapped = false
-		for i = 1 to n-1 inclusive do
-			if A[i-1] > A[i] then
-				swap(A[i-1], A[i])
-				swapped = true
-			end if
-		end for
-		n = n - 1
-	until not swapped
-end procedure*/
+    bool swapped = true;
+    
+	while (swapped)
+	{
+        swapped = false;
+		for (unsigned int cnt = 1; cnt < size; cnt++)
+			if (theArray[cnt - 1] > theArray[cnt])
+		        swapped = swapValues(theArray, cnt - 1, cnt);
+		size = size - 1;
+	}
 }
 void selectionSort (int theArray[], unsigned int size)
 {
+    bool swapped;
+    unsigned int smallPos = 0;
+    for (unsigned int cnt = 0; cnt < size; cnt++)
+    {
+        smallPos = cnt;
+        for ( unsigned int cnt2 = cnt + 1; cnt2 < size; cnt2++)
+            if (theArray[cnt2] < theArray[smallPos])
+                smallPos = cnt2;
+        swapped = swapValues(theArray, cnt, smallPos);
+    }
+}
 /*For I = 0 to N-1 do:
 	Smallsub = I
 	For J = I + 1 to N-1 do:
@@ -70,11 +78,17 @@ void selectionSort (int theArray[], unsigned int size)
 	End-For
 	swap(A(I), A(Smallsub))
 End-For*/
-}
 
-void swapValues (int values[], int index1, int index2)
+
+bool swapValues (int values[], int index1, int index2)
 {
+    int tmpVal;
     
+    tmpVal = values[index1];
+    values[index1] = values[index2];
+    values[index2] = tmpVal;
+
+    return true;
 }
 /*
  * Unit testing functions. Do not alter.

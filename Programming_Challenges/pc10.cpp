@@ -28,7 +28,7 @@ class Converter
 		{
 		    if (targetUnits == 'M')
 		        return fahrenheitToCelsius(temp);
-            else if (targetUnits =='I')
+            else
                 return celsiusToFahrenheit(temp);
             
 		}
@@ -46,7 +46,7 @@ class Converter
 		{
             if (targetUnits == 'M')
 		        return feetToMeters(distance);
-            else if (targetUnits =='I')
+            else
                 return metersToFeet(distance);  
 		}
 		
@@ -82,7 +82,7 @@ template <typename X, typename A>
 void btassert(A assertion);
 void unittest ();
 
-int main (int argc, char* argv[])
+int main (int, char**)
 {
 	unittest();
 	
