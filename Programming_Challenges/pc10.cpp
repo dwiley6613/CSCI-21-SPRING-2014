@@ -14,6 +14,13 @@ class Converter
 {
 	public:
 		
+		//
+		// Grader comments 2014.03.04
+		//
+		// Boyd doesn't want inline function definitions at this point.
+		// He mentioned this in class on Monday.
+		//
+		
 		/*
 		 * Convert a temperature from metric to imperial units or from
 		 * imperial to metric units.
