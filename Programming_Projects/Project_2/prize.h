@@ -17,11 +17,11 @@ class Prize
         
         ~Prize ();
         
-        string getName () const;
-        void setName (string newName);
+        string getPrizeName () const;
+        void setPrizeName (string newName);
         
-        unsigned int getVal () const;
-        void setVal (unsigned int newVal);
+        unsigned int getPrizeValue () const;
+        void setPrizeValue (unsigned int newVal);
     
         friend bool operator == (const Prize& prizeName_1, const Prize& prizeName_2);
         
@@ -31,4 +31,3 @@ class Prize
         unsigned int prizeVal;
 };
  
-   
