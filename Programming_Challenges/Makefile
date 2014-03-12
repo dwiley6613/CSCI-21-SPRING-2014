@@ -23,6 +23,9 @@ pc14:pc14.cpp
 	
 pc15:pc15.cpp
 	g++ $(Flag) -o pc15 pc15.cpp
-	
+
+pc16:pc16.cpp
+	g++ $(Flag) -o pc16 pc16.cpp
+
 clean:
 	rm *.o
