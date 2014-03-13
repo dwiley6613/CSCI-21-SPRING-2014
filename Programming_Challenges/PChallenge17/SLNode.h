@@ -1,5 +1,15 @@
+/*
+ *
+ * Programming Challenge 17
+ * This program demostrates the initialization and use of dynamicly link lists
+ * using classes
+ * SLNode.h
+ * Donald Wiley
+ * created 03/12/2014
+ * modified 03/12/2014
+ */
+ 
 # pragma once
-
 #include <string>
 using namespace std;
 
@@ -50,6 +60,6 @@ class SLNode
         SLNode* getNextNode () const;
          
     private:
-        SLNode* nextNode;
         int contents;
+        SLNode* nextNode;
 };
