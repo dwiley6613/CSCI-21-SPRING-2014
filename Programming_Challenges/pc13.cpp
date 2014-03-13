@@ -1,5 +1,11 @@
 /*
+ *
  * Programming Challenge 13
+ *This program demostrates the use of functions that access and manipulate data
+ *pc13.cpp
+ *Donald Wiley
+ *created 02/19/2014
+ *modified 02/19/2014
  */
 #include <cassert>
 #include <cstdlib>
