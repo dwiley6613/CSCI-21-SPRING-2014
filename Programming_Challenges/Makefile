@@ -27,5 +27,14 @@ pc15:pc15.cpp
 pc16:pc16.cpp
 	g++ $(Flag) -o pc16 pc16.cpp
 
+pc17: SLNode.o pc17.o
+	g++  pc17.o SLNode.o -o pc17
+
+pc17.o: pc17.cpp
+	g++ -c pc17.cpp -o pc17.o
+
+SLNode.o:  SLNode.h SLNode.cpp
+	g++ -c SLNode.cpp -o SLNode.o
+
 clean:
 	rm *.o
