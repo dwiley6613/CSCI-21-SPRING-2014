@@ -82,6 +82,12 @@ int main (int , char**)
 // CODE HERE -- FUNCTION DEFINITIONS
 string* makeDynoString (string contents)
 {
+	//
+	// Grader comments 2014.03.14
+	//
+	// Note that you don't need all this temp stuff. You could just do
+	// return new string(contents);
+	//
     string* stringPtr;
     stringPtr = new string;
     *stringPtr = contents;
@@ -104,6 +110,15 @@ unsigned int countChars (string* theString, unsigned int& alpha, unsigned int& n
         throw ArrayException ("NULL STRING REFERENCE");
     else
     {
+	//
+	// Grader comments 2014.03.14
+	//
+	// Note that you don't need the temp string. You can just work directly
+	// with theString. Also, use indentation consistently. The idea is to
+	// make your code easier to read for the poor soul who has to come behind
+	// you and debug it. Indentations are there to give your reader a quick
+	// overview of the structure of the code.
+	//
         string tmpString = *theString;
         for (unsigned int cnt = 0; cnt < tmpString.length(); cnt++)
         {
