@@ -29,12 +29,14 @@ SList::~SList()
  */
 void SList::insertHead (int newContents)
 {
-    SLNode const* tmpHead = head;
+    SLNode* tmpHead = NULL;
+    tmpHead = head;
     head = new SLNode(newContents);
     if (size == 0)
         head->setNextNode(NULL);
     else
         head->setNextNode(tmpHead);
+    tmpHead = NULL;
     size++;
    //cout << head->getContents() << endl;
 }   
