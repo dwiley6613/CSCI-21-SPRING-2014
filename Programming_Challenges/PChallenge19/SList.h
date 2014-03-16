@@ -27,33 +27,49 @@ class SList
 	    virtual ~SList();
 	    
 	    /*
-	     * create a new SLNode and attach as head of list
+	     * Function "insertHead" create a new SLNode and attach as head of list
+	     * @return void
 	     */
 	    void insertHead (int newSize);
 	    
 	    /* 
-	     * remove the head node from the list
+	     * Function "removeHead" remove the head node from the list
 	     * @return void
 	     */
 	    void removeHead ();
 	    
 	    /*
-	     * clear the entire contents of the list, freeing all memory
+	     * Function "insertTail" create a new SLNode and attach at the end of list
+	     * @param int newContents
+	     * @returun void
+	     */
+	     void insertTail (int newContents);
+	     
+	     /*
+	      * Function "removeTail" remove the tail node from the list
+	      * @return void
+	      */
+        void removeTail ();	      
+	    
+	    /*
+	     * Function "clear" clear the entire contents of the list, freeing all memory
 	     * associated with all nodes
+	     * @return void
 	     */
 	    void clear ();
 	    
 	    /*
-	     * Get the size of the list
+	     * Function "getSize" Get the size of the list
 	     * @return int 
 	     */
 	 	unsigned int getSize () const;
 	 	
         /*
-	     * @return a string representation of the contents
+	     * Function return a string representation of the contents
 	     * of all nodes in the list, in the format
 	     * NUM1,NUM2,...,LASTNUM; return empty string on 
-	     * empty list 
+	     * empty list
+	     * @return string
 	 	 */
         string toString () const;	
 	    

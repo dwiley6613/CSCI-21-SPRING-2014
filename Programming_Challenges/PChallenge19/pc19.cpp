@@ -1,13 +1,13 @@
 /*
+ *
  * Programming Challenge 19
- *This program demostrates the initialization and use of dynamicly link lists
+ *This program demonstrates the initialization and use of dynamically link lists
  *using classes
  *pc17.cpp
  *Donald Wiley
  *created 03/12/2014
  *modified 03/12/2014
  */
-
 #include "SList.h"
 
 #include <cassert>
@@ -20,7 +20,7 @@ template <typename X, typename A>
 void btassert(A assertion);
 void unittest ();
 
-int main (int argc, char* argv[])
+int main (int, char**)
 {
 	unittest();
 	
@@ -112,9 +112,11 @@ void unittest ()
 	} catch (bool b) {
 		cout << "# FAILED TEST 10: removeTail #\n";
 	}
-	
+
 	list.insertHead(10);
+	cout << list.toString() << " " << list.getSize() << endl;	
 	list.insertTail(20);
+	cout << list.toString() << " " << list.getSize() << endl;
 	try {
 		btassert<bool>(list.toString() == "10,20" && list.getSize() == 2);
 		cout << "Passed TEST 11: insertHead,insertTail,toString,getSize \n";

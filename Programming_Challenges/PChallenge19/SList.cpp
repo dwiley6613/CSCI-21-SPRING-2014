@@ -1,7 +1,7 @@
 /*
  *
  * Programming Challenge 18
- * This program demostrates the initialization and use of dynamicly link lists
+ * This program demonstrates the initialization and use of dynamically link lists
  * using classes
  * SList.cpp
  * Donald Wiley
@@ -23,10 +23,7 @@ SList::~SList()
 {
     SList::clear();
 }
-	    
-/*
- * create a new SLNode and attach as head of list
- */
+
 void SList::insertHead (int newContents)
 {
     SLNode* tmpHead = NULL;
@@ -38,13 +35,8 @@ void SList::insertHead (int newContents)
         head->setNextNode(tmpHead);
     tmpHead = NULL;
     size++;
-   //cout << head->getContents() << endl;
 }   
 	    
-/* 
- * remove the head node from the list
- * @return void
- */
 void SList::removeHead ()
 {
     if (size > 0)
@@ -57,11 +49,46 @@ void SList::removeHead ()
         size--;
     }
 }
-	    
-/*
- * clear the entire contents of the list, freeing all memory
- * associated with all nodes
- */
+
+void SList::insertTail (int newContents)
+{
+    if (size == 0)
+        SList::insertHead (newContents);
+    else
+    {
+        SLNode* hereNode = head;
+        while (hereNode->getNextNode() != NULL)
+            hereNode = hereNode->getNextNode();
+        hereNode->setNextNode(new SLNode(newContents));  //set nextNode* of hereNode to new node
+        (hereNode->getNextNode())->setNextNode(NULL);  //set nextNode* of new tail node to NULL
+    }
+}
+
+void SList::removeTail ()
+{
+    if (size == 1)
+    {
+        removeHead() ;
+    }
+        
+    else if (size > 1)
+    {
+        SLNode* hereNode = head;
+        SLNode* preNode;
+        cout << "here we are" << endl;
+        while (hereNode->getNextNode() != NULL)
+        {
+            preNode = hereNode;
+            hereNode = hereNode->getNextNode();
+        }
+        preNode->setNextNode(NULL);
+        delete hereNode;
+        hereNode = NULL;
+        preNode = NULL;
+        size--;
+    }
+}
+
 void SList::clear ()
 {  
     unsigned int lmt = size;
@@ -69,21 +96,12 @@ void SList::clear ()
         removeHead();
 }
 	    
-/*
- * Get the size of the list
- * @return int 
- */
+
 unsigned int SList::getSize () const
 {
     return size;    
 }
-	 	
-/*
- * @return a string representation of the contents
- * of all nodes in the list, in the format
- * NUM1,NUM2,...,LASTNUM; return empty string on 
- * empty list 
- */
+
 string SList::toString () const
 {
     SLNode* here;
