@@ -1,6 +1,6 @@
 /*
  *
- * Programming Challenge 18
+ * Programming Challenge 19
  * This program demonstrates the initialization and use of dynamically link lists
  * using classes
  * SList.cpp
@@ -61,6 +61,7 @@ void SList::insertTail (int newContents)
             hereNode = hereNode->getNextNode();
         hereNode->setNextNode(new SLNode(newContents));  //set nextNode* of hereNode to new node
         (hereNode->getNextNode())->setNextNode(NULL);  //set nextNode* of new tail node to NULL
+		size++;
     }
 }
 
@@ -75,7 +76,6 @@ void SList::removeTail ()
     {
         SLNode* hereNode = head;
         SLNode* preNode;
-        cout << "here we are" << endl;
         while (hereNode->getNextNode() != NULL)
         {
             preNode = hereNode;

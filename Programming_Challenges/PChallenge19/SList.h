@@ -1,7 +1,7 @@
 /*
  *
- * Programming Challenge 18
- * This program demostrates the initialization and use of dynamicly link lists
+ * Programming Challenge 19
+ * This program demonstrates the initialization and use of dynamically link lists
  * using classes
  * SList.h
  * Donald Wiley

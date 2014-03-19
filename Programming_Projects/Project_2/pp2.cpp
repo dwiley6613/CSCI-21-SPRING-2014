@@ -4,24 +4,218 @@
 #include <cstdlib>
 #include <iostream>
 #include <string>
+#include "CinReader.h"
 using namespace std;
+
+CinReader reader;
 
 /* for unit testing -- do not alter */
 template <typename X, typename A>
 void btassert(A assertion);
 void unittest ();
 
+/**************Function Declarations********************/
+
+/*
+ * Function "mainMenu"
+ * @return int
+ */
+ void mainMenu();
+ 
+ /*
+  * Function "boxTest"
+  * @return int
+  */
+ void boxTest();
+ 
+ /*
+  * Function "prizeTest"
+  * @return int
+  */
+ void prizeTest();
+ 
 int main (int, char**)
 {
-    unittest();
+    //unittest();
 	
     // CODE HERE -- INTERACTIVE TEST
     //
     // add additional functions as needed to support interactive test
+	mainMenu();
 	
     return 0;
 }
 
+ 
+ 
+ /************Function Definitions**********************/
+void mainMenu()
+{
+	int choice=10;
+	while(choice !=0)
+	{
+		cout << "Main Menu" << endl;
+		cout << "[1] Box -- interactive test" << endl;
+		cout << "[2] Prize -- interactive test" << endl;
+		cout << "[3] Run official unit test" << endl;
+		cout << "[0] Quit" << endl;
+		cout << "your choice: ";
+		choice = reader.readInt(0,3);
+		cout << endl;
+		switch(choice)
+		{
+			case 1:
+				boxTest();
+				break;
+			case 2:
+				prizeTest();
+				break;
+			case 3:
+				unittest();
+				break;
+			case 0:
+				break;
+		}
+	}
+}
+ 
+void boxTest()
+{
+	int c2, choice=10;
+	Box b1;
+	string name;
+	int value;
+	string tmpString;
+	char tmpChar;
+	while (choice != 0)
+	{
+		cout << "Box Test" << endl << endl;
+		cout << "Box info -> 0, NO COLOR" << endl;
+		cout << "[1] Add prize" << endl;
+		cout << "[2] View prizes (using getPrize)" << endl;
+		cout << "[3] Remove cargo" << endl;
+		cout << "[4] Box number" << endl;
+		cout << "[5] Box color" << endl;
+		cout << "[6] View prize capacity" << endl;
+		cout << "[7] View prize count" << endl;
+		cout << "[0] Back to main menu" << endl;
+		cout << "your choice: ";
+		choice = reader.readInt(0,7);
+		cout << endl;
+		switch(choice)
+		{
+			case 1:
+				cout << "Prize name (current= \"NO NAME\"): ";
+				name = reader.readString();
+				cout << "Prize value (current= 0): ";
+				value = reader.readInt(0, 2000000);
+				b1.addPrize(Prize(name, value));
+				break;
+			case 2:
+				for(unsigned int cnt=0; cnt<b1.getPrizeCount(); cnt++)
+					cout << cnt+1 << ": " << b1.getPrize(cnt).getPrizeName() << endl;
+				//cout << endl << "Press enter to continue" << endl;
+				break;
+			case 3:
+				for(unsigned int cnt=0; cnt<b1.getPrizeCount(); cnt++)
+					cout << cnt+1 << ": " << b1.getPrize(cnt).getPrizeName() << endl;
+				cout << "Remove which prize (0 to cancel)? ";
+				c2 = reader.readInt(1,b1.getPrizeCount());
+				b1.removePrize(c2-1);
+				if(c2 == 0)
+					break;
+				cout << "Prize number " << c2 << "removed" << endl;
+				break;
+			case 4:
+				cout << "Box number: " << b1.getBoxNumber() << endl;
+				cout << "Update (y/n)? ";
+				tmpChar = reader.readChar("yYnN");
+				tmpChar = toupper(tmpChar);
+				if(tmpChar == 'Y')
+				{
+					cout << "Enter new box number: ";
+					c2 = reader.readInt();
+					b1.setBoxNumber(c2);
+				}
+				break;
+			case 5:
+				cout << "Box color: " << b1.getBoxColor() << endl;
+				cout << "Update (y/n)? ";
+				tmpChar = reader.readChar("yYnN");
+				tmpChar = toupper(tmpChar);
+				if(tmpChar == 'Y')
+				{
+					cout << "Enter new box color: ";
+					tmpString = reader.readString();
+					b1.setBoxColor(tmpString);
+				}
+				break;
+			case 6:
+				cout << "Box prize capacity: " << b1.getPrizeCapacity() << endl;
+				break;
+			case 7:
+				cout << "Box prize count: " << b1.getPrizeCount() << endl;
+				break;
+			case 0:
+				break;
+		}
+	}
+	mainMenu();	
+}
+  
+void prizeTest()
+{ 
+	int c2, choice=10;
+	Prize p1;
+	char tmpChar;
+	string tmpString;
+	
+	while(choice != 0)
+	{
+		cout << "PRIZE TEST" << endl;
+		cout << "[1] Prize name" << endl;
+		cout << "[2] Prize value" << endl;
+		cout << "[3] Compare two prizes" << endl;
+		cout << "[0] Back to main menu" << endl;
+		cout << "your choice: ";
+		choice = reader.readInt(0,3);
+		cout << endl;
+		switch(choice)
+		{
+			case 1:
+				cout << "Prize name: " << p1.getPrizeName() << endl;
+				cout << "Update (y/n)? ";
+				tmpChar = reader.readChar("yYnN");
+				tmpChar = toupper(tmpChar);
+				if(tmpChar == 'Y')
+				{
+					cout << "Enter new prize name: ";
+					tmpString = reader.readString();
+					p1.setPrizeName(tmpString);
+					cout << "Prize name updated." <<endl;
+				}
+				break;
+			case 2:
+				cout << "Prize value: " << p1.getPrizeValue() << endl;
+				cout << "Update (y/n)? ";
+				tmpChar = reader.readChar("yYnN");
+				tmpChar = toupper(tmpChar);
+				if(tmpChar == 'Y')
+				{
+					cout << "Enter new prize value: ";
+					c2 = reader.readInt();
+					p1.setPrizeValue(c2);
+					cout << "Prize value updated." << endl <<endl;
+				}
+				break;
+			case 3:
+				break;
+			case 0:
+				break;
+		}
+	}
+	mainMenu();
+}
 /*
  * Unit testing functionb1. Do not alter.
  */

@@ -114,9 +114,7 @@ void unittest ()
 	}
 
 	list.insertHead(10);
-	cout << list.toString() << " " << list.getSize() << endl;	
 	list.insertTail(20);
-	cout << list.toString() << " " << list.getSize() << endl;
 	try {
 		btassert<bool>(list.toString() == "10,20" && list.getSize() == 2);
 		cout << "Passed TEST 11: insertHead,insertTail,toString,getSize \n";
