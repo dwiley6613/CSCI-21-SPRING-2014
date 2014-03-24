@@ -33,6 +33,11 @@ void unittest ();
   * @return int
   */
  void prizeTest();
+/*
+ * Function "enterToContinue" pause program until enter is pressed
+ * @return void
+ */
+ void enterToContinue();
  
 int main (int, char**)
 {
@@ -110,11 +115,13 @@ void boxTest()
 				cout << "Prize value (current= 0): ";
 				value = reader.readInt(0, 2000000);
 				b1.addPrize(Prize(name, value));
+				enterToContinue();
+				cout << string(50, '\n');
 				break;
 			case 2:
 				for(unsigned int cnt=0; cnt<b1.getPrizeCount(); cnt++)
 					cout << cnt+1 << ": " << b1.getPrize(cnt).getPrizeName() << endl;
-				//cout << endl << "Press enter to continue" << endl;
+				enterToContinue();
 				break;
 			case 3:
 				for(unsigned int cnt=0; cnt<b1.getPrizeCount(); cnt++)
@@ -123,8 +130,12 @@ void boxTest()
 				c2 = reader.readInt(1,b1.getPrizeCount());
 				b1.removePrize(c2-1);
 				if(c2 == 0)
+				{
+					enterToContinue();
 					break;
-				cout << "Prize number " << c2 << "removed" << endl;
+				}
+				cout << "Prize number " << c2 << " removed" << endl;
+				enterToContinue();
 				break;
 			case 4:
 				cout << "Box number: " << b1.getBoxNumber() << endl;
@@ -137,6 +148,7 @@ void boxTest()
 					c2 = reader.readInt();
 					b1.setBoxNumber(c2);
 				}
+				enterToContinue();
 				break;
 			case 5:
 				cout << "Box color: " << b1.getBoxColor() << endl;
@@ -149,30 +161,35 @@ void boxTest()
 					tmpString = reader.readString();
 					b1.setBoxColor(tmpString);
 				}
+				enterToContinue();
 				break;
 			case 6:
 				cout << "Box prize capacity: " << b1.getPrizeCapacity() << endl;
+				enterToContinue();
 				break;
 			case 7:
 				cout << "Box prize count: " << b1.getPrizeCount() << endl;
+				enterToContinue();
 				break;
 			case 0:
+				enterToContinue();
 				break;
 		}
 	}
-	mainMenu();	
 }
   
 void prizeTest()
 { 
 	int c2, choice=10;
 	Prize p1;
+	Prize p2;
 	char tmpChar;
 	string tmpString;
 	
 	while(choice != 0)
 	{
-		cout << "PRIZE TEST" << endl;
+		cout << "PRIZE TEST" << endl << endl;
+		cout << "Prize info -> " << p1.getPrizeName() << ", $" << p1.getPrizeValue() << endl;
 		cout << "[1] Prize name" << endl;
 		cout << "[2] Prize value" << endl;
 		cout << "[3] Compare two prizes" << endl;
@@ -194,6 +211,7 @@ void prizeTest()
 					p1.setPrizeName(tmpString);
 					cout << "Prize name updated." <<endl;
 				}
+				enterToContinue();
 				break;
 			case 2:
 				cout << "Prize value: " << p1.getPrizeValue() << endl;
@@ -207,15 +225,49 @@ void prizeTest()
 					p1.setPrizeValue(c2);
 					cout << "Prize value updated." << endl <<endl;
 				}
+				enterToContinue();
 				break;
 			case 3:
+				cout << "First set the values for the data members of the two prizes." << endl << endl;
+				cout << "Prize 1 ->" << endl;
+				cout <<"Prize name (current=\"" << p1.getPrizeName() << "\"): ";
+				tmpString = reader.readString();
+				if(tmpString != "")
+					p1.setPrizeName(tmpString);
+				cout << "Prize value (current=" << p1.getPrizeValue() << "): ";
+				c2 = reader.readInt(0, 2000000);
+				p1.setPrizeValue(c2);
+				cout << endl;
+				cout << "Prize 2 ->" << endl;
+				cout << "Prize name (current=\"" << p2.getPrizeName() << "\"): ";
+				tmpString = reader.readString();
+				if(tmpString != "")
+					p2.setPrizeName(tmpString);
+				cout << "Prize value (current=" << p2.getPrizeValue() << "): ";
+				c2 = reader.readInt(0, 2000000);
+				p2.setPrizeValue(c2);
+				cout << endl;
+				if(p1 == p2)
+					cout << "Yes. The two prizes are not the same." << endl;
+				else
+					cout << "No. The two prizes are not the same." << endl;
+				cout << endl;
+				enterToContinue();
 				break;
 			case 0:
+				enterToContinue();
 				break;
 		}
 	}
-	mainMenu();
 }
+
+void enterToContinue()
+{
+	cout << endl << "Press enter to continue";
+	reader.readString();
+	cout << endl;
+}
+
 /*
  * Unit testing functionb1. Do not alter.
  */
