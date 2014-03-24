@@ -56,6 +56,7 @@ int main (int, char**)
  /************Function Definitions**********************/
 void mainMenu()
 {
+	system("clear");
 	int choice=10;
 	while(choice !=0)
 	{
@@ -70,15 +71,22 @@ void mainMenu()
 		switch(choice)
 		{
 			case 1:
+				system("clear");
 				boxTest();
 				break;
 			case 2:
+				system("clear");
 				prizeTest();
 				break;
 			case 3:
+				enterToContinue();
+				system("clear");
 				unittest();
+				enterToContinue();
+				system("clear");
 				break;
 			case 0:
+				system("clear");
 				break;
 		}
 	}
@@ -116,26 +124,29 @@ void boxTest()
 				value = reader.readInt(0, 2000000);
 				b1.addPrize(Prize(name, value));
 				enterToContinue();
-				cout << string(50, '\n');
+				system("clear");
 				break;
 			case 2:
 				for(unsigned int cnt=0; cnt<b1.getPrizeCount(); cnt++)
 					cout << cnt+1 << ": " << b1.getPrize(cnt).getPrizeName() << endl;
 				enterToContinue();
+				system("clear");
 				break;
 			case 3:
 				for(unsigned int cnt=0; cnt<b1.getPrizeCount(); cnt++)
 					cout << cnt+1 << ": " << b1.getPrize(cnt).getPrizeName() << endl;
 				cout << "Remove which prize (0 to cancel)? ";
-				c2 = reader.readInt(1,b1.getPrizeCount());
-				b1.removePrize(c2-1);
+				c2 = reader.readInt(0,b1.getPrizeCount());
 				if(c2 == 0)
 				{
 					enterToContinue();
+					system("clear");
 					break;
 				}
+				b1.removePrize(c2-1);
 				cout << "Prize number " << c2 << " removed" << endl;
 				enterToContinue();
+				system("clear");
 				break;
 			case 4:
 				cout << "Box number: " << b1.getBoxNumber() << endl;
@@ -149,6 +160,7 @@ void boxTest()
 					b1.setBoxNumber(c2);
 				}
 				enterToContinue();
+				system("clear");
 				break;
 			case 5:
 				cout << "Box color: " << b1.getBoxColor() << endl;
@@ -162,17 +174,21 @@ void boxTest()
 					b1.setBoxColor(tmpString);
 				}
 				enterToContinue();
+				system("clear");
 				break;
 			case 6:
 				cout << "Box prize capacity: " << b1.getPrizeCapacity() << endl;
 				enterToContinue();
+				system("clear");
 				break;
 			case 7:
 				cout << "Box prize count: " << b1.getPrizeCount() << endl;
 				enterToContinue();
+				system("clear");
 				break;
 			case 0:
 				enterToContinue();
+				system("clear");
 				break;
 		}
 	}
@@ -212,6 +228,7 @@ void prizeTest()
 					cout << "Prize name updated." <<endl;
 				}
 				enterToContinue();
+				system("clear");
 				break;
 			case 2:
 				cout << "Prize value: " << p1.getPrizeValue() << endl;
@@ -226,6 +243,7 @@ void prizeTest()
 					cout << "Prize value updated." << endl <<endl;
 				}
 				enterToContinue();
+				system("clear");				
 				break;
 			case 3:
 				cout << "First set the values for the data members of the two prizes." << endl << endl;
@@ -253,9 +271,11 @@ void prizeTest()
 					cout << "No. The two prizes are not the same." << endl;
 				cout << endl;
 				enterToContinue();
+				system("clear");
 				break;
 			case 0:
 				enterToContinue();
+				system("clear");				
 				break;
 		}
 	}
