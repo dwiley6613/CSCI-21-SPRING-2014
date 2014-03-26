@@ -61,7 +61,12 @@ class Prize
          */        
         unsigned int getPrizeValue () const;
         
-
+/*
+		 * Friend function that overloads the comparison operator
+		 * @param Prize& prizeName_1
+		 * @param Prize& prizeName2
+		 * @return bool
+		 */
     
         friend bool operator == (const Prize& prizeName_1, const Prize& prizeName_2);
         
