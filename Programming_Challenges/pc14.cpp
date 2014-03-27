@@ -58,7 +58,6 @@ void bubbleSort (int theArray[], unsigned int size)
 }
 void selectionSort (int theArray[], unsigned int size)
 {
-    bool swapped;
     unsigned int smallPos = 0;
     for (unsigned int cnt = 0; cnt < size; cnt++)
     {
@@ -66,19 +65,9 @@ void selectionSort (int theArray[], unsigned int size)
         for ( unsigned int cnt2 = cnt + 1; cnt2 < size; cnt2++)
             if (theArray[cnt2] < theArray[smallPos])
                 smallPos = cnt2;
-        swapped = swapValues(theArray, cnt, smallPos);
+        swapValues(theArray, cnt, smallPos);
     }
 }
-/*For I = 0 to N-1 do:
-	Smallsub = I
-	For J = I + 1 to N-1 do:
-		If A(J) < A(Smallsub)
-			Smallsub = J
-		End-If
-	End-For
-	swap(A(I), A(Smallsub))
-End-For*/
-
 
 bool swapValues (int values[], int index1, int index2)
 {

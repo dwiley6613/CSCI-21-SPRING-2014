@@ -112,7 +112,7 @@ void unittest ()
 	} catch (bool b) {
 		cout << "# FAILED TEST 10: insertHead,toString,getSize #\n";
 	}
-
+	
 	list.clear();
 	try {
 		btassert<bool>(list.toString() == "" && list.getSize() == 0);

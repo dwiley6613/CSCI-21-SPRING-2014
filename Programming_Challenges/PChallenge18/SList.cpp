@@ -11,6 +11,9 @@
  
 #include "SList.h"
 #include <string>
+#include <iostream>
+#include <sstream>
+using namespace std;
 
 SList::SList ()
     :head (NULL), size(0){}
@@ -26,8 +29,14 @@ SList::~SList()
  */
 void SList::insertHead (int newContents)
 {
+    SLNode* tmpHead = head;
     head = new SLNode(newContents);
+    if (size == 0)
+        head->setNextNode(NULL);
+    else
+        head->setNextNode(tmpHead);
     size++;
+	tmpHead = NULL;
 }   
 	    
 /* 
@@ -36,7 +45,15 @@ void SList::insertHead (int newContents)
  */
 void SList::removeHead ()
 {
-    
+    if (size > 0)
+    {
+        SLNode* tmpHead;
+        tmpHead = head;
+        head = tmpHead->getNextNode();
+        delete tmpHead;
+        tmpHead = NULL;
+        size--;
+    }
 }
 	    
 /*
@@ -44,8 +61,10 @@ void SList::removeHead ()
  * associated with all nodes
  */
 void SList::clear ()
-{
-    
+{  
+    unsigned int lmt = size;
+    for (unsigned int cnt = 0; cnt < lmt; cnt++)
+        removeHead();
 }
 	    
 /*
@@ -65,8 +84,22 @@ unsigned int SList::getSize () const
  */
 string SList::toString () const
 {
+    SLNode* here;
+    stringstream outString;
+    
+    here = head;
+    
     if (size == 0)
         return "";
     else
-        return "test";
+        for (unsigned int cnt = 0; cnt < size; cnt++)
+        {
+            if (cnt == 0)
+                outString << here->getContents();
+            else 
+                outString << "," << here->getContents();
+            here = here->getNextNode();
+        }
+           
+        return outString.str();
 }

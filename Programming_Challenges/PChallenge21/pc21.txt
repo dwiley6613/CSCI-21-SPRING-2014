@@ -1,0 +1,6 @@
+Define a "header only" template class named Box with:
+
+- one data member -- contents (data type templated)
+- overloaded constructor -- one parameter newContents to be assigned to contents
+- getter (getContents) and setter (setContents)
+- friend overloaded operator<<

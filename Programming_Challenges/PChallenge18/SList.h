@@ -31,6 +31,13 @@ class SList
 	     */
 	    void insertHead (int newSize);
 	    
+	    /*
+	     * Function "insertTrail" create a new SLNode and attach at the end of list
+	     * @param int newContents
+	     * @return void
+	     */
+	    void insertTail (int newContents); 
+	    
 	    /* 
 	     * remove the head node from the list
 	     * @return void
