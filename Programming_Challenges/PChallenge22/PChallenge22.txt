@@ -1,0 +1,64 @@
+Implement the following "header only" template classes including the function interfaces 
+as described below EXACTLY.
+
+##############################################################################################
+template class name: SLNode
+
+private data members:
+
+	nextNode, SLNode* that points to the next node in a singly-linked list
+	contents, int used to store the data contents of this SLNode
+
+public function interface:
+
+	default constructor, sets values nextNode(NULL) and contents(0)
+	overloaded constructor, int parameter assigned to contents
+	
+	destructor, sets nextNode to NULL
+	
+	void setContents (int)
+	int getContents () const
+	
+	void setNextNode (SLNode*)
+	
+	SLNode* getNextNode () const
+
+##############################################################################################
+template class name: SList
+
+private data members:
+
+	head, SLNode* that points to the first node in a singly-linked list
+	size, unsigned int the count of the number of nodes in the list
+
+public function interface:
+
+	default constructor, sets values head(NULL) and size(0)
+	
+	destructor, calls the clear function
+	
+	void insertHead (int), create a new SLNode and attach as head of list
+	void insertTail (int), create a new SLNode and attach at the end of list
+	
+	void removeHead (), remove the head node from the list
+	void removeTail (), remove the tail node from the list
+	
+	void insert (int), create a new SLNode and insert it in the correct position
+	                   in the list so that the values in the nodes are in 
+	                   ascending order from head node to tail node
+	
+	bool removeFirst (int), remove the first appearance of the parameter value;
+	                      return true on success or false if the value is not in the list
+	
+	[NEW] bool removeAll (int), remove all occurrences of the parameter value from the list;
+	                      return true on success or false if the value is not in the list
+	
+	void clear (), clear the entire contents of the list, freeing all memory
+	               associated with all nodes
+	
+	unsigned int getSize () const
+	
+	string toString () const, return a string representation of the contents
+	                          of all nodes in the list, in the format
+	                          NUM1,NUM2,...,LASTNUM; return empty string on 
+	                          empty list
