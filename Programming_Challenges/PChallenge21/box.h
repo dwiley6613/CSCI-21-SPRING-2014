@@ -43,13 +43,9 @@
 		 * @param contentsDataType outContents
 		 * @return ostream
 		 */
-		friend ostream& operator << (ostream& out, Box in)
-		{
-			out << in.getContents();
-			return out;
-		}
- 
-	private:
+		friend ostream& operator << (ostream& out, Box in);
+		
+ 	private:
 		T contents;
  };
  
@@ -70,9 +66,9 @@ void Box<T>::setContents(T newContents)
 	contents = newContents;
 }
 
-/*template <typename T>
-ostream& operator << (ostream& out, Box<T> in)
+template <typename T>
+ostream& operator << (ostream& out, Box in)
 {
 	out << in.getContents();
 	return out;
-}*/
+}
