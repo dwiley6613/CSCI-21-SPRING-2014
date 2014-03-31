@@ -15,20 +15,22 @@
 #include <sstream>
 using namespace std;
 
-SList::SList ()
+template<typename T>
+SList<T>::SList()
     :head (NULL), size(0){}
     
-
-SList::~SList()
+template<typename T>
+SList<T>::~SList()
 {
     SList::clear();
 }
 
-void SList::insertHead (int newContents)
+template<typename T>
+void SList<T>::insertHead(T newContents)
 {
-    SLNode* tmpHead = NULL;
+    SLNode<T>* tmpHead = NULL;
     tmpHead = head;
-    head = new SLNode(newContents);
+    head = new SLNode<T>(newContents);
     if (size == 0)
         head->setNextNode(NULL);
     else
@@ -36,12 +38,13 @@ void SList::insertHead (int newContents)
     tmpHead = NULL;
     size++;
 }   
-	    
-void SList::removeHead ()
+
+template<typename T>	    
+void SList<T>::removeHead()
 {
-    if (size > 0)
+    if(size > 0)
     {
-        SLNode* tmpHead;
+        SLNode<T>* tmpHead;
         tmpHead = head;
         head = tmpHead->getNextNode();
         delete tmpHead;
@@ -50,33 +53,35 @@ void SList::removeHead ()
     }
 }
 
-void SList::insertTail (int newContents)
+template<typename T>
+void SList<T>::insertTail(T newContents)
 {
     if (size == 0)
-        SList::insertHead (newContents);
+        SList::insertHead(newContents);
     else
     {
-        SLNode* hereNode = head;
-        while (hereNode->getNextNode() != NULL)
+        SLNode<T>* hereNode = head;
+        while(hereNode->getNextNode() != NULL)
             hereNode = hereNode->getNextNode();
-        hereNode->setNextNode(new SLNode(newContents));  //set nextNode* of hereNode to new node
+        hereNode->setNextNode(new SLNode<T>(newContents));  //set nextNode* of hereNode to new node
         (hereNode->getNextNode())->setNextNode(NULL);  //set nextNode* of new tail node to NULL
 		size++;
     }
 }
 
-void SList::removeTail ()
+template<typename T>
+void SList<T>::removeTail()
 {
-    if (size == 1)
+    if(size == 1)
     {
         removeHead() ;
     }
         
-    else if (size > 1)
+    else if(size > 1)
     {
-        SLNode* hereNode = head;
-        SLNode* preNode;
-        while (hereNode->getNextNode() != NULL)
+        SLNode<T>* hereNode = head;
+        SLNode<T>* preNode;
+        while(hereNode->getNextNode() != NULL)
         {
             preNode = hereNode;
             hereNode = hereNode->getNextNode();
@@ -89,16 +94,18 @@ void SList::removeTail ()
     }
 }
 
-void SList::insert (int newContents)
+template<typename T>
+void SList<T>::insert(T newContents)
 {
-	insertHead (newContents);
+	insertHead(newContents);
 	bubbleSort();
 }
 
-bool SList::removeFirst (int valToRemove)
+template<typename T>
+bool SList<T>::removeFirst(T valToRemove)
 {
-	SLNode* tmpNode = NULL;
-	SLNode* previousNode = NULL;
+	SLNode<T>* tmpNode = NULL;
+	SLNode<T>* previousNode = NULL;
 	if(findValue(valToRemove) == NULL)
 	{
 		return false;
@@ -106,7 +113,7 @@ bool SList::removeFirst (int valToRemove)
 	else
 	{
 		previousNode = findValue(valToRemove);
-		tmpNode = (previousNode->getNextNode())->getNextNode(); // save the nextNode of the node to be removed
+		tmpNode =(previousNode->getNextNode())->getNextNode(); // save the nextNode of the node to be removed
 		delete previousNode->getNextNode(); //remove the node
 		previousNode->setNextNode(tmpNode);  //store next node from removed node to previous node		
 		size--;
@@ -114,32 +121,35 @@ bool SList::removeFirst (int valToRemove)
 	}
 }
 
-void SList::clear ()
+template<typename T>
+void SList<T>::clear()
 {  
     unsigned int lmt = size;
-    for (unsigned int cnt = 0; cnt < lmt; cnt++)
+    for(unsigned int cnt = 0; cnt < lmt; cnt++)
         removeHead();
 }
 	    
 
-unsigned int SList::getSize () const
+template<typename T>
+unsigned int SList<T>::getSize() const
 {
     return size;    
 }
 
-string SList::toString () const
+template<typename T>
+string SList<T>::toString() const
 {
-    SLNode* here;
+    SLNode<T>* here;
     stringstream outString;
     
     here = head;
     
-    if (size == 0)
+    if(size == 0)
         return "";
     else
-        for (unsigned int cnt = 0; cnt < size; cnt++)
+        for(unsigned int cnt = 0; cnt < size; cnt++)
         {
-            if (cnt == 0)
+            if(cnt == 0)
                 outString << here->getContents();
             else 
                 outString << "," << here->getContents();
@@ -149,16 +159,17 @@ string SList::toString () const
         return outString.str();
 }
 
-void SList::bubbleSort ()
+template<typename T>
+void SList<T>::bubbleSort ()
 {
-	SLNode* hereNode = head;
+	SLNode<T>* hereNode = head;
     bool swapped = true;
-	while (swapped)
+	while(swapped)
 	{
         swapped = false;
 		while(hereNode->getNextNode() != NULL)
 		{
-			if (hereNode->getContents() > (hereNode->getNextNode())->getContents())
+			if(hereNode->getContents() > (hereNode->getNextNode())->getContents())
 			{
 		        swapped = swapValues(hereNode);
 			}
@@ -168,7 +179,8 @@ void SList::bubbleSort ()
 	}
 }
 
-bool SList::swapValues (SLNode* hereNode)
+template<typename T>
+bool SList<T>::swapValues(SLNode<T>* hereNode)
 {
     int tmpVal = hereNode->getContents ();
     hereNode->setContents((hereNode->getNextNode())->getContents());
@@ -176,13 +188,13 @@ bool SList::swapValues (SLNode* hereNode)
  
     return true;
 }
-
-SLNode* SList::findValue(int valToFind)
+template<typename T>
+SLNode<T>* SList<T>::findValue(T valToFind)
 {
-	SLNode* previousNode = head;
-	SLNode* hereNode = head;
+	SLNode<T>* previousNode = head;
+	SLNode<T>* hereNode = head;
 	for(unsigned int cnt=0; cnt < size; cnt++)
-		if (hereNode->getContents() == valToFind)
+		if(hereNode->getContents() == valToFind)
 		{
 			return previousNode;
 		}
@@ -192,4 +204,14 @@ SLNode* SList::findValue(int valToFind)
 			hereNode = hereNode->getNextNode();
 		}
 	return NULL;
+}
+
+template<typename T>
+bool SList<T>::removeAll(T valueToRemove)
+{
+	bool removed = false;
+	for(int cnt = 0; cnt < size; cnt++)
+		if(removeFirst(valueToRemove))
+			removed = true;
+	return removed;
 }

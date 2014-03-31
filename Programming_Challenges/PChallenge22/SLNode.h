@@ -58,7 +58,8 @@ class SLNode
          * Get the address of the next node.
          * @return a pointer with address of the next node
          */
-        SLNode* getNextNode() const;
+        
+		SLNode<T>* getNextNode() const;
          
     private:
         T contents;

@@ -1,18 +1,19 @@
 /*
  *
- * Programming Challenge 20
- * This program demonstrates the initialization and use of dynamically link lists
+ * Programming Challenge 22
+ * This program demonstrates the initialization and use of templated dynamically link lists
  * using classes
  * SList.h
  * Donald Wiley
- * created 03/17/2014
- * modified 03/17/2014
+ * created 03/29/2014
+ * modified 03/29/2014
  */
  
 #pragma once
 #include <string>
 #include "SLNode.h"
 
+template <typename T>
 class SList
 {
     public:
@@ -30,7 +31,7 @@ class SList
 	     * Function "insertHead" create a new SLNode and attach as head of list
 	     * @return void
 	     */
-	    void insertHead (int newSize);
+	    void insertHead (T newContents);
 	    
 	    /* 
 	     * Function "removeHead" remove the head node from the list
@@ -43,7 +44,7 @@ class SList
 	     * @param int newContents
 	     * @returun void
 	     */
-	     void insertTail (int newContents);
+	     void insertTail (T newContents);
 	     
 	    /*
 	     * Function "removeTail" remove the tail node from the list
@@ -59,7 +60,7 @@ class SList
 		 * @param int newContencts
 		 * @return void
 		 */
-		void insert (int newContents);
+		void insert (T newContents);
 		
 		/*
 		 * Function "removeFirst" remove the first appearance of the parameter value;
@@ -67,7 +68,7 @@ class SList
 		 * @param int valToRemove
 		 * @return bool
 		 */
-		bool removeFirst (int valToRemove);
+		bool removeFirst (T valToRemove);
 						  
 	    /*
 	     * Function "clear" clear the entire contents of the list, freeing all memory
@@ -99,21 +100,28 @@ class SList
 		/*
 		 *
 		 */
-		bool swapValues (SLNode* hereNode);
+		bool swapValues (SLNode<T>* hereNode);
 		
 		/*
 		 * Function "findValue" find the first given occurrence of a value
 		 * in a linked list
 		 * @return node pointer
 		 */
-		SLNode* findValue(int valToFind);
+		SLNode<T>* findValue(T valToFind);
+		
+		/*
+		 * F"unction removeAll" remove all occurrences of the parameter value fromthe list
+		 * return true on success or false if the value is not in the list
+		 * @param typename variable
+		 */
+		bool removeAll(T valueToRemove);
 	    
     /*
      * head, SLNode* that points to the first node in a singly-linked list
 	 * size, unsigned int the count of the number of nodes in the list
      */
      private:
-        SLNode* head;
+        SLNode<T>* head;
         unsigned int size;
 };
 

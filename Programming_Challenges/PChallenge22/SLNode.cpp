@@ -10,7 +10,7 @@
  */
  
 #include <string>
-# include "SLNode.h"
+#include "SLNode.h"
 
 
 /*
@@ -18,7 +18,7 @@
  */
 template <typename T>
 SLNode<T>::SLNode ()
-    :nextNode (NULL){}
+:nextNode(NULL){}
         
 /*
  * overloaded constructor, typename parameter assigned to contents
@@ -74,7 +74,7 @@ void SLNode<T>::setNextNode (SLNode* newNextNode)
  * @return a pointer with address of the next node
  */
 template <typename T>
-SLNode* SLNode<T>::getNextNode() const
+SLNode<T>* SLNode<T>::getNextNode() const
 {
-    return nextNode;   
+	return nextNode;   
 }
