@@ -4,10 +4,10 @@
  * Donald Wiley
  * box.h
  * created 3/24/2014
- * modified 3/29/2014
+ * modified 3/31/2014
  * Sebastian Brenton
  */
- //#pragma once
+ #pragma once
  #include <string>
  #include <iostream>
  #include <cstdlib>
@@ -43,7 +43,10 @@
 		 * @param contentsDataType outContents
 		 * @return ostream
 		 */
-		friend ostream& operator << (ostream& out, Box in);
+		friend ostream& operator << (ostream& out, Box<T> in)
+		{
+			return out << in.getContents();
+		}
 		
  	private:
 		T contents;
@@ -64,11 +67,4 @@ template <typename T>
 void Box<T>::setContents(T newContents)
 {
 	contents = newContents;
-}
-
-template <typename T>
-ostream& operator << (ostream& out, Box in)
-{
-	out << in.getContents();
-	return out;
 }
