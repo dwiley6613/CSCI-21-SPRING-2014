@@ -1,5 +1,9 @@
 /*
- * Programming Challenge 15
+ * Donald Wiley
+ * Programming Challenge 15 demonstrates the uses of an array in a class
+ * pc15.cpp
+ * created  2/26/2014
+ * modified 3/31/2014
  */
 #include <cassert>
 #include <iostream>
@@ -116,11 +120,11 @@ bool ShoppingList::addItem (string theItem)
 {
     if (itemCount < maxItems)
     {
-        items [itemCount] = theItem;
-        itemCount++;
+        items [itemCount++] = theItem;
         return true;
     }
-    return false;    
+	else
+		return false;    
 }
 
 string ShoppingList::getItem (unsigned int index) const

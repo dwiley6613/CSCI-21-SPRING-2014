@@ -1,5 +1,11 @@
 /*
- * Programming Challenge 21 - UNIT TEST
+ * Programming challenge 21
+ * Demostrates the use of templates in a class
+ * Donald Wiley
+ * pc21.cpp
+ * created 3/24/2014
+ * modified 3/31/2014
+ * Sebastian Brenton
  */
 
 #include "box.h"
