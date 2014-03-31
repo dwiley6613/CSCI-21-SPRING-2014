@@ -19,47 +19,65 @@ class SLNode
     public:
 
         /*
-         * default constructor, sets values nextNode(NULL) and contents(0)
+         * default constructor, set value nextNode(NULL)
          */
-        SLNode ();
+        SLNode()
+		:nextNode(NULL){}
         
         /*
-         * overloaded constructor, int parameter assigned to contents
+         * overloaded constructor, typename parameter assigned to contents
          */
-        SLNode (T newContents);
+        SLNode(T newContents)
+		:contents(newContents), nextNode(NULL){}
         
         /* 
          * destructor, sets nextNode to NULL
          */
-	    virtual ~SLNode();
+	    virtual ~SLNode()
+		{
+			nextNode = NULL;
+		}
 	    
 	    /*
 	     * Set the value of contents in this SLNode.
 	     * @param int newContents 
 	     * @return void
 	     */
-        void setContents (T newContent);
+        void setContents (T newContents)
+		{
+			contents = newContents;
+		}
         
         /*
          * Get the value in contents in this SLNode.
-         * @return an integer containing the value
+         * @return a typename containing the value
          * in contents of this SLNode
+		 * @return typename T
          */
-        T getContents () const;
+        T getContents () const
+		{
+			return contents;
+		}
 	
 	    /*
 	     * Set the value of the next SLNode in this SLNode.
 	     * @param SLNode* newNextNode 
 	     * @return void
 	     */
-        void setNextNode (SLNode* newNextNode);
+        void setNextNode (SLNode* newNextNode)
+		{
+			nextNode = newNextNode; 
+		}
         
 	    /*
          * Get the address of the next node.
          * @return a pointer with address of the next node
          */
         
-		SLNode<T>* getNextNode() const;
+		SLNode<T>* getNextNode() const
+		{
+			return nextNode;   
+		}
          
     private:
         T contents;

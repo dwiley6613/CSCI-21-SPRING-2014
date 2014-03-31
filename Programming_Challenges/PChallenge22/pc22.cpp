@@ -7,6 +7,7 @@
  * Modified 3/29/2014
  */
 
+#include "SLNode.h"
 #include "SList.h"
 #include <cassert>
 #include <cstdlib>
