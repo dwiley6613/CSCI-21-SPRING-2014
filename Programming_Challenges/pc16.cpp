@@ -172,7 +172,7 @@ bool ShoppingList::addItem (string theItem)
 
 string ShoppingList::getItem (unsigned int index) const
 {
-    if (index >= maxItems)
+    if ((index >= maxItems) || (itemCount == 0))
         throw ArrayException ("INVALID ARRAY INDEX");
     else
         return items [index];
@@ -180,7 +180,7 @@ string ShoppingList::getItem (unsigned int index) const
 
 string& ShoppingList::getItem (unsigned int index)
 {
-    if (index >= maxItems)
+    if ((index >= maxItems) || (itemCount == 0))
         throw ArrayException ("INVALID ARRAY INDEX");
     else
         return items [index];
@@ -238,6 +238,7 @@ void unittest ()
 
     try {
         myList->getItem(0);
+        btassert<bool>(false);
     } catch (ArrayException e) {
         try {
             btassert<bool>(e.message == "INVALID ARRAY INDEX");
@@ -245,6 +246,8 @@ void unittest ()
         } catch (bool b) {
             cout << "# FAILED TEST 3: ShoppingList::getItem(0) EXCEPTION HANDLING #\n";
         }
+    } catch(bool b) {
+        cout << "# FAILED TEST 3: ShoppingList::getItem(0) EXCEPTION HANDLING #\n";
     }
 
     try {
@@ -302,6 +305,7 @@ void unittest ()
 
     try {
         myList->getItem(26);
+        btassert<bool>(false);
     } catch (ArrayException e) {
         try {
             btassert<bool>(e.message == "INVALID ARRAY INDEX");
@@ -309,6 +313,8 @@ void unittest ()
         } catch (bool b) {
             cout << "# FAILED TEST 11: ShoppingList::setItem(11) EXCEPTION HANDLING #\n";
         }
+    } catch(bool b) {
+        cout << "# FAILED TEST 11: ShoppingList::setItem(11) EXCEPTION HANDLING #\n";
     }
 
     try {
@@ -331,6 +337,7 @@ void unittest ()
 
     try {
         myList->getItem(0) = "oranges";
+        btassert<bool>(false);
     } catch (ArrayException e) {
         try {
             btassert<bool>(e.message == "INVALID ARRAY INDEX");
@@ -338,6 +345,8 @@ void unittest ()
         } catch (bool b) {
             cout << "# FAILED TEST 14: string& ShoppingList::setItem(0) EXCEPTION HANDLING #\n";
         }
+    } catch(bool b) {
+        cout << "# FAILED TEST 14: string& ShoppingList::setItem(0) EXCEPTION HANDLING #\n";
     }
 
     try {
@@ -349,7 +358,7 @@ void unittest ()
 
     delete myList;
     myList = new ShoppingList(1);
-    
+
     cout << "\n* OVERLOADED CONSTRUCTOR *\n\n";
 
     try {
@@ -375,6 +384,7 @@ void unittest ()
 
     try {
         myList->removeItem(1);
+        btassert<bool>(false);
     } catch (ArrayException e) {
         try {
             btassert<bool>(e.message == "INVALID ARRAY INDEX");
@@ -382,10 +392,13 @@ void unittest ()
         } catch (bool b) {
             cout << "# FAILED TEST 19: ShoppingList::removeItem(1) EXCEPTION HANDLING #\n";
         }
+    } catch(bool b) {
+        cout << "# FAILED TEST 19: ShoppingList::removeItem(1) EXCEPTION HANDLING #\n";
     }
 
     try {
         myList->getItem(1);
+        btassert<bool>(false);
     } catch (ArrayException e) {
         try {
             btassert<bool>(e.message == "INVALID ARRAY INDEX");
@@ -393,12 +406,15 @@ void unittest ()
         } catch (bool b) {
             cout << "# FAILED TEST 20: ShoppingList::getItem(1) EXCEPTION HANDLING #\n";
         }
+    } catch(bool b) {
+        cout << "# FAILED TEST 20: ShoppingList::getItem(1) EXCEPTION HANDLING #\n";
     }
 
     cout << "\n* RESET FUNCTION *\n\n";
-    
+
     try {
         myList->reset(0);
+        btassert<bool>(false);
     } catch (ArrayException e) {
         try {
             btassert<bool>(e.message == "INVALID ARRAY SIZE");
@@ -406,8 +422,10 @@ void unittest ()
         } catch (bool b) {
             cout << "# FAILED TEST 21: ShoppingList::reset(0) EXCEPTION HANDLING #\n";
         }
+    } catch(bool b) {
+        cout << "# FAILED TEST 21: ShoppingList::reset(0) EXCEPTION HANDLING #\n";
     }
-    
+
     try {
         btassert<bool>(myList->getMaxItems() == 1);
         cout << "Passed TEST 22: ShoppingList::getMaxItems () \n";
@@ -423,14 +441,14 @@ void unittest ()
     } catch (bool b) {
         cout << "# FAILED TEST 23: ShoppingList::getMaxItems () #\n";
     }
-    
+
     try {
         btassert<bool>(myList->getItemCount() == 0);
         cout << "Passed TEST 24: ShoppingList::getItemCount () \n";
     } catch (bool b) {
         cout << "# FAILED TEST 24: ShoppingList::getItemCount () #\n";
     }
-    
+
     for (unsigned int i=0; i<myList->getMaxItems(); i++)
         myList->addItem("grapes");
 
@@ -443,6 +461,7 @@ void unittest ()
 
     try {
         myList->getItem(6);
+        btassert<bool>(false);
     } catch (ArrayException e) {
         try {
             btassert<bool>(e.message == "INVALID ARRAY INDEX");
@@ -450,6 +469,8 @@ void unittest ()
         } catch (bool b) {
             cout << "# FAILED TEST 26: ShoppingList::setItem(6) EXCEPTION HANDLING #\n";
         }
+    } catch(bool b) {
+        cout << "# FAILED TEST 26: ShoppingList::setItem(6) EXCEPTION HANDLING #\n";
     }
 
     try {
@@ -472,6 +493,7 @@ void unittest ()
 
     try {
         myList->getItem(0) = "oranges";
+        btassert<bool>(false);
     } catch (ArrayException e) {
         try {
             btassert<bool>(e.message == "INVALID ARRAY INDEX");
@@ -479,6 +501,8 @@ void unittest ()
         } catch (bool b) {
             cout << "# FAILED TEST 29: string& ShoppingList::setItem(0) EXCEPTION HANDLING #\n";
         }
+    } catch(bool b) {
+        cout << "# FAILED TEST 29: string& ShoppingList::setItem(0) EXCEPTION HANDLING #\n";
     }
 
     try {
