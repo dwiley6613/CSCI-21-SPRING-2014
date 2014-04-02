@@ -151,8 +151,7 @@ ShoppingList::ShoppingList (unsigned int newMaxItems)
 
 ShoppingList::~ShoppingList ()
 {
-    delete [] items;
-    items = NULL;
+    deleteItems();
 }
 
 unsigned int ShoppingList::getMaxItems () const
@@ -215,9 +214,10 @@ void ShoppingList::reset (unsigned int newMaxItems)
     itemCount = 0;
     items = new string [newMaxItems];
 }
-void deleteItems()
+void ShoppingList::deleteItems()
 {
-	if (items != NULL){
+	if (items != NULL)
+	{
 		delete [] items;
 		items = NULL;
 	}
