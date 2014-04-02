@@ -106,7 +106,7 @@ void boxTest()
 		cout << "Box info -> 0, NO COLOR" << endl;
 		cout << "[1] Add prize" << endl;
 		cout << "[2] View prizes (using getPrize)" << endl;
-		cout << "[3] Remove cargo" << endl;
+		cout << "[3] Remove prize" << endl;
 		cout << "[4] Box number" << endl;
 		cout << "[5] Box color" << endl;
 		cout << "[6] View prize capacity" << endl;

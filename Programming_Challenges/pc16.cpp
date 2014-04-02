@@ -96,6 +96,12 @@ class ShoppingList
          * @throw ArrayException with the message "INVALID ARRAY SIZE" if newMaxItems is less than 1
          */
         void reset (unsigned int newMaxItems);
+		
+		/*
+		 * Function "deleteItems" delete the current items array
+		 * @return void
+		 */
+		 void deleteItems();
 
     private:
 
@@ -204,10 +210,17 @@ void ShoppingList::reset (unsigned int newMaxItems)
 {
     if (newMaxItems < 1) 
         throw ArrayException ("INVALID ARRAY SIZE");
+	deleteItems();
     maxItems = newMaxItems;
     itemCount = 0;
-    delete [] items;
     items = new string [newMaxItems];
+}
+void deleteItems()
+{
+	if (items != NULL){
+		delete [] items;
+		items = NULL;
+	}
 }
 
 /*
