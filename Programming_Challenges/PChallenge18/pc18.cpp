@@ -1,9 +1,9 @@
 /*
  *
  * Programming Challenge 18
- *This program demostrates the initialization and use of dynamicly link lists
+ *This program demonstrates the initialization and use of dynamically link lists
  *using classes
- *pc17.cpp
+ *pc18.cpp
  *Donald Wiley
  *created 03/12/2014
  *modified 03/12/2014

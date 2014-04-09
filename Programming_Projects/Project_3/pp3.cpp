@@ -10,6 +10,7 @@
 #include "DLNode.h"
 #include "DLList.h"
 #include <cassert>
+#include <fstream>
 #include <cstdlib>
 #include <iostream>
 #include <sstream>
@@ -19,12 +20,90 @@ using namespace std;
 template <typename X, typename A>
 void btassert(A assertion);
 void unittest ();
+bool processFile (string filename);
 
-int main (int, char*[])
+
+int main (int argc, char* argv[])
 {
-	unittest();
-	
+	//unittest();
+	string type = argv[2];
+	if(argc == 3){
+		processFile(argv[1]);
+	}
+	else{
+		cout << "Please use command line format programName inputFileName dataType \n";
+	}
 	return 0;
+}
+
+bool processFile (string filename)
+{
+    string ss;
+    ifstream infile (filename.c_str());
+    if (infile.is_open()){
+		cout << "here\n";
+		//DLList<type> list;
+        while (infile >> ss){
+            if (ss[0] == '#'){
+			}
+            else if (ss[0] == 'C'){
+				//DLList<int> intList;
+				cout << "LIST CREATED" << endl;
+			}
+            else if (ss[0] == 'X'){
+				//list.clear()
+				cout << "LIST CLEARED" << endl;
+			}
+            else if (ss[0] == 'D'){
+				//list.~DLList;
+				cout << "LIST DELETED" << endl;
+			}
+            else if (ss[0] == 'I'){
+				cout << "VALUE x INSERTED" << endl;
+			}
+			else if (ss[0] == 'F'){
+				cout << "VALUE x ADDED TO HEAD" << endl;
+			}
+			else if (ss[0] == 'B'){
+				cout << "VALUE x ADDED TO TAIL" << endl;
+			}
+			else if (ss[0] == 'A'){
+				cout << "VALUE x AT HEAD" << endl;
+			}
+			else if (ss[0] == 'Z'){
+				cout << "VALUE x ADDED TO TAIL" << endl;
+			}
+			else if (ss[0] == 'T'){
+				cout << "REMOVED HEAD" << endl;
+			}
+			else if (ss[0] == 'K'){
+				cout << "REMOVED TAIL" << endl;
+			}
+			else if (ss[0] == 'E'){
+				cout << "VALUE x ELIMINATED" << endl;
+			}
+			else if (ss[0] == 'R'){
+				cout << "VALUE x REMOVED" << endl;
+			}
+			else if (ss[0] == 'G'){
+				cout << "VALUE x FOUND" << endl;
+			}
+			else if (ss[0] == 'N'){
+				cout << "LIST SIZE IS x" << endl;
+			}
+			else if (ss[0] == 'P'){
+				cout << "NUM1,NUM2" << endl;
+			}
+            else{
+			
+			}
+        }
+        infile.close();
+    }
+	else{
+		cout << "File not found please enter correct file name and path.\n";
+	}
+    return false; 
 }
 
 /*

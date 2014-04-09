@@ -1,7 +1,7 @@
 /*
  *
- * Programming Challenge 17
- * This program demostrates the initialization and use of dynamicly link lists
+ * Programming Challenge 18
+ * This program demonstrates the initialization and use of dynamically link lists
  * using classes
  * SLNode.h
  * Donald Wiley

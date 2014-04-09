@@ -1,7 +1,7 @@
 /*
  * Programming Challenge 8
  * pc8.cpp
- *This program demostrates the use of data from the command line
+ *This program demonstrates the use of data from the command line
  *Donald Wiley
  *date created 2/14/2014
  *date modified 2/14/2014
