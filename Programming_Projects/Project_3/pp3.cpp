@@ -25,77 +25,223 @@ bool processFile (string filename);
 
 int main (int argc, char* argv[])
 {
-	//unittest();
-	string type = argv[2];
-	if(argc == 3){
-		processFile(argv[1]);
+	unittest();
+	if(argc != 3){
+		cout << "Please use command line format programName inputFileName dataType \n";
 	}
 	else{
-		cout << "Please use command line format programName inputFileName dataType \n";
+		processFile(argv[1]);
 	}
 	return 0;
 }
 
 bool processFile (string filename)
 {
-    string ss;
-    ifstream infile (filename.c_str());
+    ifstream infile(filename.c_str());
     if (infile.is_open()){
-		cout << "here\n";
-		//DLList<type> list;
-        while (infile >> ss){
-            if (ss[0] == '#'){
+		string str;
+		DLList<int>* list = NULL;
+		bool listAlive = false;
+        while (! infile.eof()){
+			getline(infile, str);
+			int data = 0;
+            if (str[0] == '#'){
 			}
-            else if (ss[0] == 'C'){
-				//DLList<int> intList;
+			else if (str[0] == 'C'){
+				if(listAlive){
+					delete list;
+					list = new DLList<int>;
+				}
+				else{
+					list = new DLList<int>;
+				}
+				listAlive = true;
 				cout << "LIST CREATED" << endl;
 			}
-            else if (ss[0] == 'X'){
-				//list.clear()
-				cout << "LIST CLEARED" << endl;
+            else if (str[0] == 'X'){
+				if(listAlive){
+					list->clear();
+					cout << "LIST CLEARED" << endl;
+				}
+				else if(!listAlive){
+					cout << "MUST CREATE LIST INSTANCE\n";
+				}
+				else{
+					cout << "LIST EMPTY\n";
+				}
 			}
-            else if (ss[0] == 'D'){
-				//list.~DLList;
-				cout << "LIST DELETED" << endl;
+            else if (str[0] == 'D'){
+				if(listAlive){
+					delete list;
+					list = NULL;
+					listAlive = false;
+					cout << "LIST DELETED" << endl;
+					
+				}
+				else{
+					cout << "MUST CREATE LIST INSTANCE\n";
+				}
 			}
-            else if (ss[0] == 'I'){
-				cout << "VALUE x INSERTED" << endl;
+            else if (str[0] == 'I'){
+				if(listAlive){
+					list->insert(data);
+					cout << "VALUE " << data << " INSERTED" << endl;
+				}
+				else if(!listAlive){
+					cout << "MUST CREATE LIST INSTANCE\n";
+				}
+				else{
+					cout << "LIST EMPTY\n";
+				}
 			}
-			else if (ss[0] == 'F'){
-				cout << "VALUE x ADDED TO HEAD" << endl;
+			else if (str[0] == 'F'){
+				if(list != NULL){
+					data = atoi(str.substr(2).c_str());
+					list->pushFront(data);
+					cout << "VALUE " << data << " ADDED TO HEAD" << endl;
+				}
+				else if(!listAlive){
+					cout << "MUST CREATE LIST INSTANCE\n";
+				}
+				else{
+					cout << "LIST EMPTY\n";
+				}
 			}
-			else if (ss[0] == 'B'){
-				cout << "VALUE x ADDED TO TAIL" << endl;
+			else if (str[0] == 'B'){
+				if(list != NULL){
+					data = atoi(str.substr(2).c_str());
+					list->pushBack(data);
+					cout << "VALUE " << data << " ADDED TO TAIL" << endl;
+				}
+				else if(!listAlive){
+					cout << "MUST CREATE LIST INSTANCE\n";
+				}
+				else{
+					cout << "LIST EMPTY\n";
+				}
 			}
-			else if (ss[0] == 'A'){
-				cout << "VALUE x AT HEAD" << endl;
+			else if (str[0] == 'A'){
+				if(list != NULL){
+					cout << "VALUE " << list->getFront() << " AT HEAD" << endl;
+				}
+				else if(!listAlive){
+					cout << "MUST CREATE LIST INSTANCE\n";
+				}
+				else{
+					cout << "LIST EMPTY\n";
+				}
 			}
-			else if (ss[0] == 'Z'){
-				cout << "VALUE x ADDED TO TAIL" << endl;
+			else if (str[0] == 'Z'){
+				if(list != NULL){
+					cout << "VALUE " << list->getBack() << " AT TAIL" << endl;
+				}
+				else if(!listAlive){
+					cout << "MUST CREATE LIST INSTANCE\n";
+				}
+				else{
+					cout << "LIST EMPTY\n";
+				}
 			}
-			else if (ss[0] == 'T'){
-				cout << "REMOVED HEAD" << endl;
+			else if (str[0] == 'T'){
+				if(listAlive && list->getSize() != 0){
+					list->popFront();
+					cout << "REMOVED HEAD" << endl;
+				}
+				else if(!listAlive){
+					cout << "MUST CREATE LIST INSTANCE\n";
+				}
+				else{
+					cout << "LIST EMPTY\n";
+				}
+				
 			}
-			else if (ss[0] == 'K'){
-				cout << "REMOVED TAIL" << endl;
+			else if (str[0] == 'K'){
+				if(listAlive && list->getSize() != 0){
+					list->popBack();
+					cout << "REMOVED TAIL" << endl;
+				}
+				else if(!listAlive){
+					cout << "MUST CREATE LIST INSTANCE\n";
+				}
+				else{
+					cout << "LIST EMPTY\n";
+				}
 			}
-			else if (ss[0] == 'E'){
-				cout << "VALUE x ELIMINATED" << endl;
+			else if (str[0] == 'E'){
+				if(listAlive){
+					data = atoi(str.substr(2).c_str());
+					if(list->removeAll(data)){
+						cout << "VALUE " << data << " ELIMINATED" << endl;
+					}
+					else{
+						cout << "VALUE " << data << " NOT FOUND\n";
+					}
+				}
+				else if(!listAlive){
+					cout << "MUST CREATE LIST INSTANCE\n";
+				}
+				else{
+					cout << "LIST EMPTY\n";
+				}
 			}
-			else if (ss[0] == 'R'){
-				cout << "VALUE x REMOVED" << endl;
+			else if (str[0] == 'R'){
+				if(listAlive){
+					data = atoi(str.substr(2).c_str());
+					if(list->removeFirst(data)){
+						cout << "VALUE " << data << " REMOVED" << endl;
+					}
+					else{
+						cout << "VALUE " << data << " NOT FOUND\n";
+					}
+				}
+				else if(!listAlive){
+					cout << "MUST CREATE LIST INSTANCE\n";
+				}
+				else{
+					cout << "LIST EMPTY\n";
+				}
 			}
-			else if (ss[0] == 'G'){
-				cout << "VALUE x FOUND" << endl;
+			else if (str[0] == 'G'){
+				if(listAlive){
+					data = atoi(str.substr(2).c_str());
+					if(list->get(data)){
+						cout << "VALUE " << data << " FOUND" << endl;
+					}
+					else{
+						cout << "VALUE " << data << " NOT FOUND\n";
+					}
+				}
+				else if(!listAlive){
+					cout << "MUST CREATE LIST INSTANCE\n";
+				}
+				else{
+					cout << "LIST EMPTY\n";
+				}
 			}
-			else if (ss[0] == 'N'){
-				cout << "LIST SIZE IS x" << endl;
+			else if (str[0] == 'N'){
+				if(listAlive){
+					cout << "LIST SIZE IS " << list->getSize() << endl;
+				}
+				else if(!listAlive){
+					cout << "MUST CREATE LIST INSTANCE\n";
+				}
+				else{
+					cout << "LIST EMPTY\n";
+				}
 			}
-			else if (ss[0] == 'P'){
-				cout << "NUM1,NUM2" << endl;
+			else if (str[0] == 'P'){
+				if(list->getSize() > 0){
+					cout << list->toString() << endl;
+				}
+				else if(!listAlive){
+					cout << "MUST CREATE LIST INSTANCE\n";
+				}
+				else{
+					cout << "LIST EMPTY\n";
+				}
 			}
             else{
-			
+				cout << "INVALID INPUT\n";
 			}
         }
         infile.close();
@@ -103,6 +249,7 @@ bool processFile (string filename)
 	else{
 		cout << "File not found please enter correct file name and path.\n";
 	}
+
     return false; 
 }
 
