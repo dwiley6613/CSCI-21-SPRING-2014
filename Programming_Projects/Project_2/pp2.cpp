@@ -265,6 +265,11 @@ void prizeTest()
 				c2 = reader.readInt(0, 2000000);
 				p2.setPrizeValue(c2);
 				cout << endl;
+				//
+				// Grader comments 2014.04.11
+				// One case says "yes" but they both say "not the same"
+				// Deducted 3 points
+				//
 				if(p1 == p2)
 					cout << "Yes. The two prizes are not the same." << endl;
 				else
