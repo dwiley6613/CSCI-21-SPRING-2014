@@ -146,7 +146,7 @@ class DLList
 				DLNode<T>* afterNode = NULL;
 				bool inserted = false;
 				do{
-					if((newContents < beforeNode->getContents()) and (newContents < beforeNode->getNext()->getContents())){//check contents of next two nodes
+					if((newContents < beforeNode->getContents()) && (newContents < beforeNode->getNext()->getContents())){//check contents of next two nodes
 						afterNode = beforeNode->getPrevious();//assign afterNode to beforeNode's previousNode
 						afterNode->setNext(theNewNode);//set afterNode's nextNode to theNewNode
 						theNewNode->setPrevious(afterNode);//set theNewNode's previousNode to afterNode
@@ -298,7 +298,7 @@ class DLList
 		
 		/*
 		 *
-		 */
+		 
 		void bubbleSort(){
 			DLNode<T>* hereNode = head;
 			bool swapped = true;
@@ -311,7 +311,7 @@ class DLList
 					hereNode = hereNode->getNext();
 				}
 			}
-		}
+		}*/
 
 		/*
 		 *
@@ -341,21 +341,7 @@ class DLList
 			return NULL;
 		}
 		
-		/*
-		 * F"unction removeAll" remove all occurrences of the parameter value fromthe list
-		 * return true on success or false if the value is not in the list
-		 * @param typename variable
-		 */
-		/*bool removeAll(T valueToRemove){
-			bool removed = false;
-			for(int cnt = 0; cnt < count; cnt++){
-				if(removeFirst(valueToRemove)){
-					removed = true;
-				}
-			}
-			return removed;
-		}*/
-	    
+		
     /*
      * head, DLNode* that points to the first node in a doubly-linked list
 	 * tail, DLNode* that points to the last node in the doubly-linked list
