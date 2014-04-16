@@ -78,7 +78,7 @@ class DLList
 				tmpHead = NULL;
 				count--;
 			}
-			else if(count > 0){
+			else if(count == 1){
 				delete head;
 				head = NULL;
 				tail = NULL;
@@ -197,11 +197,10 @@ class DLList
 		 * @param typename valToRemove
 		 * @return bool true if removed
 		 */
-		bool removeall(T valToRemove){
-			unsigned int lmt = count;
+		bool removeAll(T valToRemove){
 			bool removed = false;
-			for (unsigned int cnt = 0; cnt < lmt; cnt++){
-				removed = removeFirst(valToRemove);
+			while(removeFirst(valToRemove)){
+				removed = true;
 			}
 		return removed;
 		}
@@ -242,7 +241,7 @@ class DLList
 		 * Function "getBack" return value of the contents of the tail node
 		 * @return typename contents
 		 */
-	 	T getback(){
+	 	T getBack(){
 			if (count == 0)
 				throw "LIST EMPTY";
 			else{
@@ -272,28 +271,24 @@ class DLList
 	     * @return string
 	 	 */
         string toString() const{
-			DLNode<T>* here;
-			stringstream outString;
-			here = head;
-			if(count == 0){
+			if(head == NULL){
 				return "";
 			}
 			else{
-				for(unsigned int cnt = 0; cnt < count; cnt++){
-					if(cnt == 0){
-						outString << here->getContents();
+				stringstream ss;
+				for(DLNode<T>* cnt = head; cnt != NULL; cnt = cnt->getNext()){
+					ss << cnt->getContents();
+					if(cnt->getNext() != NULL){
+						ss << ',';
 					}
-					else{
-						outString << "," << here->getContents();
-					}
-					here = here->getNext();
 				}
-				return outString.str();
+				return ss.str();
 			}
 		}
 		/*
 		 * Friend overloaded operator function "<<"
-		 * @param
+		 * @param ostream& out
+		 * @param DLList<T>& src
 		 * @return ostream& out
 		 */
 		friend ostream& operator << (ostream& out, const DLList<T>& src)
@@ -333,7 +328,7 @@ class DLList
 		 * in a linked list
 		 * @return node pointer
 		 */
-		DLNode<T>* findValue(T valToFind){
+		DLNode<T>* findValue(T valToFind)const{
 			DLNode<T>* hereNode = head;
 			for(unsigned int cnt=0; cnt < count; cnt++){
 				if(hereNode->getContents() == valToFind){
@@ -351,7 +346,7 @@ class DLList
 		 * return true on success or false if the value is not in the list
 		 * @param typename variable
 		 */
-		bool removeAll(T valueToRemove){
+		/*bool removeAll(T valueToRemove){
 			bool removed = false;
 			for(int cnt = 0; cnt < count; cnt++){
 				if(removeFirst(valueToRemove)){
@@ -359,7 +354,7 @@ class DLList
 				}
 			}
 			return removed;
-		}
+		}*/
 	    
     /*
      * head, DLNode* that points to the first node in a doubly-linked list

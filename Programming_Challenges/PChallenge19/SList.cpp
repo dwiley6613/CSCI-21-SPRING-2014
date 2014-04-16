@@ -6,7 +6,7 @@
  * SList.cpp
  * Donald Wiley
  * created 03/12/2014
- * modified 03/12/2014
+ * modified 04/14/2014
  */
  
 #include "SList.h"
@@ -21,7 +21,7 @@ SList::SList ()
 
 SList::~SList()
 {
-    SList::clear();
+    clear();
 }
 
 void SList::insertHead (int newContents)
@@ -60,7 +60,6 @@ void SList::insertTail (int newContents)
         while (hereNode->getNextNode() != NULL)
             hereNode = hereNode->getNextNode();
         hereNode->setNextNode(new SLNode(newContents));  //set nextNode* of hereNode to new node
-        (hereNode->getNextNode())->setNextNode(NULL);  //set nextNode* of new tail node to NULL
 		size++;
     }
 }
