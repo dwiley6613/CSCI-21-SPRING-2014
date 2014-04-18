@@ -18,8 +18,7 @@
 using namespace std;
 
 template <typename T>
-class SList
-{
+class SList{
     public:
         /*
          * default constructor, sets values head(NULL) and size(0)
@@ -30,8 +29,7 @@ class SList
         /* 
          * destructor, calls the clear function
          */
-	    virtual ~SList()
-		{
+	    virtual ~SList(){
 			SList::clear();
 		}
 	    
@@ -39,15 +37,16 @@ class SList
 	     * Function "insertHead" create a new SLNode and attach as head of list
 	     * @return void
 	     */
-	    void insertHead (T newContents)
-		{
+	    void insertHead (T newContents){
 			SLNode<T>* tmpHead = NULL;
 			tmpHead = head;
 			head = new SLNode<T>(newContents);
-			if (size == 0)
+			if (size == 0){
 				head->setNextNode(NULL);
-			else
+			}
+			else{
 				head->setNextNode(tmpHead);
+			}
 			tmpHead = NULL;
 			size++;
 		}  		
@@ -56,10 +55,8 @@ class SList
 	     * Function "removeHead" remove the head node from the list
 	     * @return void
 	     */
-	    void removeHead ()
-		{
-			if(size > 0)
-			{
+	    void removeHead (){
+			if(size > 0){
 				SLNode<T>* tmpHead;
 				tmpHead = head;
 				head = tmpHead->getNextNode();
@@ -74,15 +71,15 @@ class SList
 	     * @param int newContents
 	     * @returun void
 	     */
-	     void insertTail (T newContents)
-		{
-			if (size == 0)
+	     void insertTail (T newContents){
+			if (size == 0){
 				SList::insertHead(newContents);
-			else
-			{
+			}
+			else{
 				SLNode<T>* hereNode = head;
-				while(hereNode->getNextNode() != NULL)
+				while(hereNode->getNextNode() != NULL){
 					hereNode = hereNode->getNextNode();
+				}
 				hereNode->setNextNode(new SLNode<T>(newContents));  //set nextNode* of hereNode to new node
 				(hereNode->getNextNode())->setNextNode(NULL);  //set nextNode* of new tail node to NULL
 				size++;
@@ -93,19 +90,14 @@ class SList
 	     * Function "removeTail" remove the tail node from the list
 	     * @return void
 	     */
-        void removeTail ()
-		{
-			if(size == 1)
-			{
+        void removeTail (){
+			if(size == 1){
 				removeHead() ;
 			}
-				
-			else if(size > 1)
-			{
+			else if(size > 1){
 				SLNode<T>* hereNode = head;
 				SLNode<T>* preNode;
-				while(hereNode->getNextNode() != NULL)
-				{
+				while(hereNode->getNextNode() != NULL){
 					preNode = hereNode;
 					hereNode = hereNode->getNextNode();
 				}
@@ -117,7 +109,6 @@ class SList
 			}
 		}		
 	    
-
 		/*
 		 * Function "insert" create a new SLNode and insert it in the correct position
 	     * in the list so that the values in the nodes are in 
@@ -125,11 +116,34 @@ class SList
 		 * @param typename newContencts
 		 * @return void
 		 */
-		void insert (T newContents)
-		{
-			insertHead(newContents);
-			bubbleSort();
-		}		
+		void insert (T newContents){
+			if(head == NULL){
+				insertHead(newContents);
+			}
+			else if(newContents <= head->getContents()){
+				insertHead(newContents);
+			}
+			else if(head->getNextNode() == NULL && newContents > head->getContents()){
+				insertTail(newContents);
+			}
+			else{
+				SLNode<T>* here = head;// set insertBeforeNode to the second node
+				SLNode<T>* previous = NULL;
+		
+				while(here->getNextNode() != NULL && here->getContents() < newContents){
+					previous = here;
+					here = here->getNextNode();
+				}
+				if(here->getNextNode() == NULL && here->getContents() < newContents){
+					insertTail(newContents);
+				}
+				else{
+					previous->setNextNode(new SLNode<T>(newContents));//create new node and set previous nextNode to new node
+					previous->getNextNode()->setNextNode(here);//set new node's nextNode to here node
+					size++;
+				}
+			}
+		}
 		
 		/*
 		 * Function "removeFirst" remove the first appearance of the parameter value;
