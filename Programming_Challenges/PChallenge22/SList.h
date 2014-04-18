@@ -207,18 +207,16 @@ class SList{
 	     * @return string
 	 	 */
         string toString () const{
-			SLNode<T>* here = head;
-			
-			if(head == NULL)
+			if(head == NULL){
 				return "";
+			}
 			else{
 				stringstream ss;
-				for(unsigned int cnt = 0; cnt < size; cnt++){
-					if(cnt == 0)
-						ss << here->getContents();
-					else 
-						ss << "," << here->getContents();
-					here = here->getNextNode();
+				for(SLNode<T>* cnt = head; cnt != NULL; cnt = cnt->getNextNode()){
+					ss << cnt->getContents();
+					if(cnt->getNextNode() != NULL){
+						ss << ',';
+					}
 				}
 				return ss.str();
 			}
@@ -229,8 +227,7 @@ class SList{
 		 * in a linked list
 		 * @return node pointer
 		 */
-		SLNode<T>* findValue(T valToFind)
-		{
+		SLNode<T>* findValue(T valToFind){
 			if(head != NULL && head->getContents() == valToFind){
 				return head;//found value at head
 			}
