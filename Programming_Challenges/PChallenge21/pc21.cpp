@@ -1,6 +1,6 @@
 /*
  * Programming challenge 21
- * Demostrates the use of templates in a class
+ * Demonstrates the use of templates in a class
  * Donald Wiley
  * pc21.cpp
  * created 3/24/2014
