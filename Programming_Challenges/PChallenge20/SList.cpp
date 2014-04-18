@@ -6,7 +6,7 @@
  * SList.cpp
  * Donald Wiley
  * created 03/17/2014
- * modified 03/17/2014
+ * modified 04/18/2014
  */
  
 #include "SList.h"
@@ -171,34 +171,6 @@ string SList::toString () const
         }
            
         return outString.str();
-}
-
-void SList::bubbleSort ()
-{
-	SLNode* hereNode = head;
-    bool swapped = true;
-	while (swapped)
-	{
-        swapped = false;
-		while(hereNode->getNextNode() != NULL)
-		{
-			if (hereNode->getContents() > (hereNode->getNextNode())->getContents())
-			{
-		        swapped = swapValues(hereNode);
-			}
-			hereNode = hereNode->getNextNode();
-		}
-
-	}
-}
-
-bool SList::swapValues (SLNode* hereNode)
-{
-    int tmpVal = hereNode->getContents ();
-    hereNode->setContents((hereNode->getNextNode())->getContents());
-    (hereNode->getNextNode())->setContents(tmpVal);
- 
-    return true;
 }
 
 SLNode* SList::findValue(int valToFind)
