@@ -91,42 +91,34 @@ void SList::removeTail ()
 
 void SList::insert (int newContents)
 {
-	insertHead (newContents);
-	bubbleSort();
-}
-	/*if(head == NULL){
+	if(head == NULL){
 		insertHead(newContents);
-		return true;
 	}
 	else if(newContents <= head->getContents()){
 		insertHead(newContents);
-		return true;
 	}
-	else if(head->getNext == NULL && newContents > head->getContents()){
+	else if(head->getNextNode() == NULL && newContents > head->getContents()){
 		insertTail(newContents);
-		return true;
 	}
 	else{
-		temp = new SLNode*(newContents);//create the new node
-		SLNode* hear = head;// set insertBeforeNode to the second node
+		SLNode* here = head;// set insertBeforeNode to the second node
+		SLNode* previous = NULL;
 		
-		while(newContents < here->getcontents()){
-			if((newContents < beforeNode->getContents()) && (newContents < beforeNode->getNext()->getContents())){//check contents of next two nodes
-				afterNode = beforeNode->getPrevious();//assign afterNode to beforeNode's previousNode
-				afterNode->setNext(theNewNode);//set afterNode's nextNode to theNewNode
-				theNewNode->setPrevious(afterNode);//set theNewNode's previousNode to afterNode
-				theNewNode->setNext(beforeNode);//set theNewNode's nextNode to beforeNode
-				beforeNode->setPrevious(theNewNode);//set beforeNode's previousNode to theNewNode
-				inserted = true;
-				count++;
-			}
-			beforeNode = beforeNode->getNext();
+		while(here->getNextNode() != NULL && here->getContents() < newContents){
+			previous = here;
+			here = here->getNextNode();
 		}
-		theNewNode = NULL;
-		beforeNode = NULL;
-		afterNode = NULL;
-	}*/
-
+		if(here->getNextNode() == NULL && here->getContents() < newContents){
+			insertTail(newContents);
+		}
+		else{
+			previous->setNextNode(new SLNode(newContents));//create new node and set previous nextNode to new node
+			previous->getNextNode()->setNextNode(here);//set new node's nextNode to here node
+			size++;
+		}
+	
+	}
+}
 bool SList::removeFirst (int valToRemove)
 {
 	SLNode* tmpNode = NULL;
