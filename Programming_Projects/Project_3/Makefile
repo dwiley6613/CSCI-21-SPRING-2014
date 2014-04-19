@@ -8,3 +8,7 @@ pp3.o: pp3.cpp DLList.h DLNode.h
 
 clean:
 	rm *.o
+
+cleanall:
+	rm *.o
+	rm *.exe*
