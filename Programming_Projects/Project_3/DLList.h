@@ -49,20 +49,18 @@ class DLList
 	     * @return void
 	     */
 	    void pushFront(T newContents){
-			DLNode<T>* tmpHead = head;
-			head = newNode(newContents);
-			if (count == 0){
-				head->setNext(NULL);
-				head->setPrevious(NULL);
+			if (head == NULL){
+				head = newNode(newContents);
 				tail = head;
+				count++;
 			}
 			else{
-				head->setPrevious(NULL);
-				head->setNext(tmpHead);
-				tmpHead->setPrevious(head);
+				DLNode<T>* temp = newNode(newContents);
+				head->setPrevious(temp);
+				temp->setNext(head);
+				head = temp;
+				count++;
 			}	
-			tmpHead = NULL;
-			count++;
 		}  		
 	    
 	    /* 
@@ -70,18 +68,17 @@ class DLList
 	     * @return void
 	     */
 	    void popFront(){
-			if(count > 1){
-				DLNode<T>* tmpHead = head;
-				head = tmpHead->getNext();
-				head->setPrevious(NULL);
-				delete tmpHead;
-				tmpHead = NULL;
-				count--;
-			}
-			else if(count == 1){
+			if(head != NULL && head->getNext() == NULL){
 				delete head;
 				head = NULL;
 				tail = NULL;
+				count--;
+			}
+			else if(head != NULL && head->getNext() != NULL ){
+				DLNode<T>* temp = head;
+				head = head->getNext();
+				head->setPrevious(NULL);
+				delete temp;
 				count--;
 			}
 		}		
@@ -92,14 +89,16 @@ class DLList
 	     * @returun void
 	     */
 	     void pushBack(T newContents){
-			if (count == 0){
-				pushFront(newContents);
+			if (tail == NULL){
+				tail = newNode(newContents);
+				head = tail;
+				count--;
 			}
 			else{
-				tail->setNext(newNode(newContents));  //create new node and set tail node with pointer of new node
-				(tail->getNext())->setPrevious(tail);  //set previousNode* of new tail node to old tail pointer
-				tail = tail->getNext();
-				tail->setNext(NULL);
+				DLNode<T>* temp = newNode(newContents);
+				tail->setNext(temp);
+				temp->setPrevious(tail);
+				tail = temp;
 				count++;
 			}
 		}		 
@@ -109,15 +108,17 @@ class DLList
 	     * @return void
 	     */
         void popBack(){
-			if(count == 1){
-				popFront();
+			if(tail != NULL && tail->getPrevious() == NULL){
+				delete tail;
+				head = NULL;
+				tail = NULL;
+				count--;
 			}
-			else if(count > 1){
-				DLNode<T>* tmpNode = tail;
-				tail->getPrevious()->setNext(NULL); //set nextNode of node in front of tail node to NULL
+			else if(tail != NULL && tail->getPrevious() != NULL ){
+				DLNode<T>* temp = tail;
 				tail = tail->getPrevious();
-				delete tmpNode;
-				tmpNode = NULL;
+				tail->setNext(NULL);
+				delete temp;
 				count--;
 			}
 		}		
@@ -141,25 +142,24 @@ class DLList
 				pushBack(newContents);
 			}
 			else{
-				DLNode<T>* theNewNode = newNode(newContents);//create the new node
-				DLNode<T>* beforeNode = head->getNext();// set insertBeforeNode to the second node
-				DLNode<T>* afterNode = NULL;
-				bool inserted = false;
-				do{
-					if((newContents < beforeNode->getContents()) && (newContents < beforeNode->getNext()->getContents())){//check contents of next two nodes
-						afterNode = beforeNode->getPrevious();//assign afterNode to beforeNode's previousNode
-						afterNode->setNext(theNewNode);//set afterNode's nextNode to theNewNode
-						theNewNode->setPrevious(afterNode);//set theNewNode's previousNode to afterNode
-						theNewNode->setNext(beforeNode);//set theNewNode's nextNode to beforeNode
-						beforeNode->setPrevious(theNewNode);//set beforeNode's previousNode to theNewNode
-						inserted = true;
-						count++;
-					}
-					beforeNode = beforeNode->getNext();
-				} while(! inserted);
-				theNewNode = NULL;
-				beforeNode = NULL;
-				afterNode = NULL;
+				DLNode<T>* here = head;
+				
+				while(here->getNext() != NULL && here->getContents() < newContents){
+					here = here->getNext();
+				}
+				if(here->getNext() == NULL && here->getContents() <= newContents){
+					pushBack(newContents);
+				}
+				else{
+					DLNode<T>* theNewNode = newNode(newContents);//create new node to insert
+					DLNode<T>* before = here->getPrevious();//name the previous node so it's easier to use
+					before->setNext(theNewNode);//link before node to new node
+					theNewNode->setPrevious(before);//link new node to before node
+					theNewNode->setNext(here);//link new node to here node
+					here->setPrevious(theNewNode);//link here node to new node
+					count++;
+
+				}
 			}
 		}		
 		
@@ -211,8 +211,7 @@ class DLList
 	     * @return void
 	     */						  
 	    void clear(){  
-			unsigned int lmt = count;
-			for(unsigned int cnt = 0; cnt < lmt; cnt++){
+			while(head != NULL){
 				popFront();
 			}
 		}
@@ -230,7 +229,7 @@ class DLList
 		 * @return typename contents
 		 */
 	 	T getFront(){
-			if (count == 0)
+			if (head == NULL)
 				throw "LIST EMPTY";
 			else{
 				return head->getContents();
@@ -242,7 +241,7 @@ class DLList
 		 * @return typename contents
 		 */
 	 	T getBack(){
-			if (count == 0)
+			if (tail == NULL)
 				throw "LIST EMPTY";
 			else{
 				return tail->getContents();
@@ -294,33 +293,6 @@ class DLList
 		friend ostream& operator << (ostream& out, const DLList<T>& src)
 		{
 			return out << src.toString();
-		}
-		
-		/*
-		 *
-		 
-		void bubbleSort(){
-			DLNode<T>* hereNode = head;
-			bool swapped = true;
-			while(swapped){
-				swapped = false;
-				while(hereNode->getNext() != NULL){
-					if(hereNode->getContents() > (hereNode->getNext())->getContents()){
-						swapped = swapValues(hereNode);
-					}
-					hereNode = hereNode->getNext();
-				}
-			}
-		}*/
-
-		/*
-		 *
-		 */
-		bool swapValues(DLNode<T>* hereNode){
-			T tmpVal = hereNode->getContents ();
-			hereNode->setContents((hereNode->getNext())->getContents());
-			(hereNode->getNext())->setContents(tmpVal);
-			return true;
 		}
 		
 		/*

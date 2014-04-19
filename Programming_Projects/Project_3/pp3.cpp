@@ -45,7 +45,7 @@ int main (int argc, char* argv[])
 	return 0;
 }
 
-bool processIntFile (string filename)
+bool processIntFile(string filename)
 {
 	
     ifstream infile(filename.c_str());
@@ -66,8 +66,8 @@ bool processIntFile (string filename)
 				}
 				else{
 					list = new DLList<int>;
+					listAlive = true;
 				}
-				listAlive = true;
 				cout << "LIST CREATED" << endl;
 			}
             else if (str[0] == 'X'){
@@ -108,7 +108,6 @@ bool processIntFile (string filename)
 			}
 			else if (str[0] == 'F'){
 				if(list != NULL){
-					//data = atoi(str.substr(2).c_str());
 					stringstream ss(str.substr(2));
 					ss >> data;
 					list->pushFront(data);
