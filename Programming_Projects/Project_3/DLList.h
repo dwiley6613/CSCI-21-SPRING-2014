@@ -230,7 +230,7 @@ class DLList
 		 */
 	 	T getFront(){
 			if (head == NULL)
-				throw "LIST EMPTY";
+				throw string("LIST EMPTY");
 			else{
 				return head->getContents();
 			}
@@ -242,7 +242,7 @@ class DLList
 		 */
 	 	T getBack(){
 			if (tail == NULL)
-				throw "LIST EMPTY";
+				throw string("LIST EMPTY");
 			else{
 				return tail->getContents();
 			}

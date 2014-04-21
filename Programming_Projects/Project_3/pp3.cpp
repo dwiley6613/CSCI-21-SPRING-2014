@@ -135,18 +135,23 @@ bool processIntFile(string filename)
 			}
 			else if (str[0] == 'A'){
 				if(list != NULL){
-					cout << "VALUE " << list->getFront() << " AT HEAD" << endl;
+					try{
+						cout << "VALUE " << list->getFront() << " AT HEAD" << endl;
+					}catch(string str){
+						cout << str <<endl;
+					}
 				}
 				else if(!listAlive){
 					cout << "MUST CREATE LIST INSTANCE\n";
 				}
-				else{
-					cout << "LIST EMPTY\n";
-				}
 			}
 			else if (str[0] == 'Z'){
 				if(list != NULL){
-					cout << "VALUE " << list->getBack() << " AT TAIL" << endl;
+					try{
+						cout << "VALUE " << list->getBack() << " AT TAIL" << endl;
+					}catch(string str){
+						cout << str << endl;
+					}
 				}
 				else if(!listAlive){
 					cout << "MUST CREATE LIST INSTANCE\n";
