@@ -92,7 +92,7 @@ class DLList
 			if (tail == NULL){
 				tail = newNode(newContents);
 				head = tail;
-				count--;
+				count++;
 			}
 			else{
 				DLNode<T>* temp = newNode(newContents);

@@ -4,7 +4,7 @@
  * Programming Challenge 26 - UNIT TEST
  * BSTree.cpp
  * created 4/19/2014
- * modified 4/19/2014
+ * modified 4/21/2014
  * 
  */
  
@@ -39,18 +39,40 @@ void BSTree::inOrder(){
 	inOrder(root);
 }
 	
-bool BSTree::insert(int newContents, BSTNode*& newNode){
-	newNode = new BSTNode(newContents);
-	root = newNode;
-	return false;
+bool BSTree::insert(int newContents, BSTNode*& tmpRoot){
+	if(tmpRoot == NULL){
+		tmpRoot = new BSTNode(newContents);
+		size++;
+		return true;
+	}
+	else if(newContents < tmpRoot->getContents()){
+		return insert(newContents, tmpRoot->getLeftChild());
+	}
+	else if(newContents > tmpRoot->getContents()){
+		return insert(newContents, tmpRoot->getRightChild());
+	}
+	else{
+		return false;
+	}
 }
 		 
-void BSTree::clear(BSTNode*& root){
-	delete root;
-	root = NULL;
+void BSTree::clear(BSTNode*& tmpRoot){
+	if(tmpRoot != NULL){
+		clear(tmpRoot->getLeftChild());
+		clear(tmpRoot->getRightChild());
+		delete tmpRoot;
+		tmpRoot = NULL;
+		size--;
+	
+	}
 }
 		 
  void BSTree::inOrder(BSTNode* rootNode){
-	cout << rootNode->getContents();
+	if(rootNode != NULL){
+
+		inOrder(rootNode->getLeftChild());
+		cout << rootNode->getContents() << " ";
+		inOrder(rootNode->getRightChild());
+	}
  }
  

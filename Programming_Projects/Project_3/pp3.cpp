@@ -26,9 +26,9 @@ bool processDoubleFile(string filename);
 
 int main (int argc, char* argv[])
 {
-	unittest();
+	//unittest();
 	if(argc != 3){
-		cout << "Please use command line format programName inputFileName dataType \n";
+		cout << "Usage: " << argv[0] << " <FILE> <DATATYPE>\n";
 	}
 	else if(string(argv[2]) == "int"){
 		processIntFile(argv[1]);
@@ -96,6 +96,8 @@ bool processIntFile(string filename)
 			}
             else if (str[0] == 'I'){
 				if(listAlive){
+					stringstream ss(str.substr(2));
+					ss >> data;
 					list->insert(data);
 					cout << "VALUE " << data << " INSERTED" << endl;
 				}
@@ -122,7 +124,8 @@ bool processIntFile(string filename)
 			}
 			else if (str[0] == 'B'){
 				if(list != NULL){
-					data = atoi(str.substr(2).c_str());
+					stringstream ss(str.substr(2));
+					ss >> data;
 					list->pushBack(data);
 					cout << "VALUE " << data << " ADDED TO TAIL" << endl;
 				}
@@ -187,7 +190,8 @@ bool processIntFile(string filename)
 			}
 			else if (str[0] == 'E'){
 				if(listAlive){
-					data = atoi(str.substr(2).c_str());
+					stringstream ss(str.substr(2));
+					ss >> data;
 					if(list->removeAll(data)){
 						cout << "VALUE " << data << " ELIMINATED" << endl;
 					}
@@ -204,7 +208,8 @@ bool processIntFile(string filename)
 			}
 			else if (str[0] == 'R'){
 				if(listAlive){
-					data = atoi(str.substr(2).c_str());
+					stringstream ss(str.substr(2));
+					ss >> data;
 					if(list->removeFirst(data)){
 						cout << "VALUE " << data << " REMOVED" << endl;
 					}
@@ -221,7 +226,8 @@ bool processIntFile(string filename)
 			}
 			else if (str[0] == 'G'){
 				if(listAlive){
-					data = atoi(str.substr(2).c_str());
+					stringstream ss(str.substr(2));
+					ss >> data;
 					if(list->get(data)){
 						cout << "VALUE " << data << " FOUND" << endl;
 					}
@@ -248,11 +254,11 @@ bool processIntFile(string filename)
 				}
 			}
 			else if (str[0] == 'P'){
-				if(list->getSize() > 0){
-					cout << *list << endl;
-				}
-				else if(!listAlive){
+				if(!listAlive){
 					cout << "MUST CREATE LIST INSTANCE\n";
+				}
+				else if(listAlive && list != NULL && list->getSize() > 0){
+					cout << *list << endl;
 				}
 				else{
 					cout << "LIST EMPTY\n";
@@ -274,12 +280,13 @@ bool processStringFile (string filename){
 	ifstream infile(filename.c_str());
     if (infile.is_open()){
 		string str;
+		string data;
 
 		DLList<string>* list = NULL;
 		bool listAlive = false;
         while (! infile.eof()){
 			getline(infile, str);
-			string data;
+			
             if (str[0] == '#'){
 			}
 			else if (str[0] == 'C'){
@@ -319,6 +326,7 @@ bool processStringFile (string filename){
 			}
             else if (str[0] == 'I'){
 				if(listAlive){
+					data = str.substr(2);
 					list->insert(data);
 					cout << "VALUE " << data << " INSERTED" << endl;
 				}
@@ -331,9 +339,10 @@ bool processStringFile (string filename){
 			}
 			else if (str[0] == 'F'){
 				if(list != NULL){
-					data = str.substr(2);
-					list->pushFront(data);
-					cout << "VALUE " << data << " ADDED TO HEAD" << endl;
+					stringstream ss(str.substr(2));
+					//ss >> data;
+					list->pushFront(ss.str());
+					cout << "VALUE " << ss.str() << " ADDED TO HEAD" << endl;
 				}
 				else if(!listAlive){
 					cout << "MUST CREATE LIST INSTANCE\n";
@@ -357,24 +366,26 @@ bool processStringFile (string filename){
 			}
 			else if (str[0] == 'A'){
 				if(list != NULL){
-					cout << "VALUE " << list->getFront() << " AT HEAD" << endl;
+					try{
+						cout << "VALUE " << list->getFront() << " AT HEAD" << endl;
+					}catch(string str){
+						cout << str <<endl;
+					}
 				}
 				else if(!listAlive){
 					cout << "MUST CREATE LIST INSTANCE\n";
-				}
-				else{
-					cout << "LIST EMPTY\n";
 				}
 			}
 			else if (str[0] == 'Z'){
 				if(list != NULL){
-					cout << "VALUE " << list->getBack() << " AT TAIL" << endl;
+					try{
+						cout << "VALUE " << list->getBack() << " AT HEAD" << endl;
+					}catch(string str){
+						cout << str <<endl;
+					}
 				}
 				else if(!listAlive){
 					cout << "MUST CREATE LIST INSTANCE\n";
-				}
-				else{
-					cout << "LIST EMPTY\n";
 				}
 			}
 			else if (str[0] == 'T'){
@@ -465,11 +476,11 @@ bool processStringFile (string filename){
 				}
 			}
 			else if (str[0] == 'P'){
-				if(list->getSize() > 0){
-					cout << *list << endl;
-				}
-				else if(!listAlive){
+				if(!listAlive){
 					cout << "MUST CREATE LIST INSTANCE\n";
+				}
+				else if(listAlive && list != NULL && list->getSize() > 0){
+					cout << *list << endl;
 				}
 				else{
 					cout << "LIST EMPTY\n";
@@ -537,6 +548,8 @@ bool processDoubleFile (string filename){
 			}
             else if (str[0] == 'I'){
 				if(listAlive){
+					stringstream ss(str.substr(2));
+					ss >> data;
 					list->insert(data);
 					cout << "VALUE " << data << " INSERTED" << endl;
 				}
@@ -577,24 +590,26 @@ bool processDoubleFile (string filename){
 			}
 			else if (str[0] == 'A'){
 				if(list != NULL){
-					cout << "VALUE " << list->getFront() << " AT HEAD" << endl;
+					try{
+						cout << "VALUE " << list->getFront() << " AT HEAD" << endl;
+					}catch(string str){
+						cout << str <<endl;
+					}
 				}
 				else if(!listAlive){
 					cout << "MUST CREATE LIST INSTANCE\n";
-				}
-				else{
-					cout << "LIST EMPTY\n";
 				}
 			}
 			else if (str[0] == 'Z'){
 				if(list != NULL){
-					cout << "VALUE " << list->getBack() << " AT TAIL" << endl;
+					try{
+						cout << "VALUE " << list->getBack() << " AT HEAD" << endl;
+					}catch(string str){
+						cout << str <<endl;
+					}
 				}
 				else if(!listAlive){
 					cout << "MUST CREATE LIST INSTANCE\n";
-				}
-				else{
-					cout << "LIST EMPTY\n";
 				}
 			}
 			else if (str[0] == 'T'){
@@ -688,11 +703,11 @@ bool processDoubleFile (string filename){
 				}
 			}
 			else if (str[0] == 'P'){
-				if(list->getSize() > 0){
-					cout << *list << endl;
-				}
-				else if(!listAlive){
+				if(!listAlive){
 					cout << "MUST CREATE LIST INSTANCE\n";
+				}
+				else if(listAlive && list != NULL && list->getSize() > 0){
+					cout << *list << endl;
 				}
 				else{
 					cout << "LIST EMPTY\n";

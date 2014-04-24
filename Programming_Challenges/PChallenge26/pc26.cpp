@@ -58,7 +58,7 @@ void unittest ()
 	} catch (bool b) {
 		cout << "# FAILED TEST 2: insert(50)/getSize/inOrder #\n";
 	}
-
+	
 	captureCout.str("");
 	cout.rdbuf(captureCout.rdbuf());
 	tree.insert(20);
