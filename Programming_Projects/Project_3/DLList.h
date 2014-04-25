@@ -271,7 +271,7 @@ class DLList
 	 	 */
         string toString() const{
 			if(head == NULL){
-				return "";
+				return string("");
 			}
 			else{
 				stringstream ss;
@@ -292,7 +292,8 @@ class DLList
 		 */
 		friend ostream& operator << (ostream& out, const DLList<T>& src)
 		{
-			return out << src.toString();
+			out << src.toString();
+			return out;
 		}
 		
 		/*
