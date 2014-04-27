@@ -83,7 +83,7 @@ class DLNode
          * @return a pointer with address of the next node
          */
         
-		DLNode<T>* getNext() const
+		DLNode* getNext() const
 		{
 			return nextNode;   
 		}
@@ -93,7 +93,7 @@ class DLNode
          * @return a pointer with address of the previous node
          */
         
-		DLNode<T>* getPrevious() const
+		DLNode* getPrevious() const
 		{
 			return previousNode;   
 		}

@@ -7,6 +7,7 @@
  * Donald Wiley
  * created 03/29/2014
  * modified 03/29/2014
+ * modified 04/18/2014
  */
  
 #pragma once
@@ -18,8 +19,7 @@
 using namespace std;
 
 template <typename T>
-class SList
-{
+class SList{
     public:
         /*
          * default constructor, sets values head(NULL) and size(0)
@@ -30,8 +30,7 @@ class SList
         /* 
          * destructor, calls the clear function
          */
-	    virtual ~SList()
-		{
+	    virtual ~SList(){
 			SList::clear();
 		}
 	    
@@ -39,16 +38,15 @@ class SList
 	     * Function "insertHead" create a new SLNode and attach as head of list
 	     * @return void
 	     */
-	    void insertHead (T newContents)
-		{
-			SLNode<T>* tmpHead = NULL;
-			tmpHead = head;
-			head = new SLNode<T>(newContents);
-			if (size == 0)
-				head->setNextNode(NULL);
-			else
-				head->setNextNode(tmpHead);
-			tmpHead = NULL;
+	    void insertHead (T newContents){
+			if (head == NULL){
+				head = new SLNode<T>(newContents);
+			}
+			else{
+				SLNode<T>* newNode = new SLNode<T>(newContents);
+				newNode->setNextNode(head);
+				head = newNode;
+			}
 			size++;
 		}  		
 	    
@@ -56,10 +54,13 @@ class SList
 	     * Function "removeHead" remove the head node from the list
 	     * @return void
 	     */
-	    void removeHead ()
-		{
-			if(size > 0)
-			{
+	    void removeHead (){
+			if(head != NULL && head->getNextNode() == NULL){
+				delete head;
+				head = NULL;
+				size--;
+			}
+			else if(head != NULL){
 				SLNode<T>* tmpHead;
 				tmpHead = head;
 				head = tmpHead->getNextNode();
@@ -74,17 +75,20 @@ class SList
 	     * @param int newContents
 	     * @returun void
 	     */
-	     void insertTail (T newContents)
-		{
-			if (size == 0)
-				SList::insertHead(newContents);
-			else
-			{
-				SLNode<T>* hereNode = head;
-				while(hereNode->getNextNode() != NULL)
-					hereNode = hereNode->getNextNode();
-				hereNode->setNextNode(new SLNode<T>(newContents));  //set nextNode* of hereNode to new node
-				(hereNode->getNextNode())->setNextNode(NULL);  //set nextNode* of new tail node to NULL
+	     void insertTail (T newContents){
+			if (head == NULL){
+				insertHead(newContents);
+			}
+			else if(head->getNextNode() == NULL){
+				head->setNextNode(new SLNode<T>(newContents));
+				size++;
+			}
+			else{
+				SLNode<T>* here = head;
+				while(here->getNextNode() != NULL){
+					here = here->getNextNode();
+				}
+				here->setNextNode(new SLNode<T>(newContents));  //set nextNode* of hereNode to new node
 				size++;
 			}
 		}		 
@@ -93,31 +97,25 @@ class SList
 	     * Function "removeTail" remove the tail node from the list
 	     * @return void
 	     */
-        void removeTail ()
-		{
-			if(size == 1)
-			{
-				removeHead() ;
-			}
-				
-			else if(size > 1)
-			{
-				SLNode<T>* hereNode = head;
-				SLNode<T>* preNode;
-				while(hereNode->getNextNode() != NULL)
-				{
-					preNode = hereNode;
-					hereNode = hereNode->getNextNode();
+        void removeTail (){
+			if(head != NULL){
+				SLNode<T>* here = head;
+				SLNode<T>* previous = NULL;
+				while(here->getNextNode() != NULL){
+					previous = here;
+					here = here->getNextNode();
 				}
-				preNode->setNextNode(NULL);
-				delete hereNode;
-				hereNode = NULL;
-				preNode = NULL;
+				if(previous == NULL){
+					removeHead();
+				}
+				else{
+					previous->setNextNode(NULL);
+					delete here;
+				}
 				size--;
 			}
 		}		
 	    
-
 		/*
 		 * Function "insert" create a new SLNode and insert it in the correct position
 	     * in the list so that the values in the nodes are in 
@@ -125,11 +123,34 @@ class SList
 		 * @param typename newContencts
 		 * @return void
 		 */
-		void insert (T newContents)
-		{
-			insertHead(newContents);
-			bubbleSort();
-		}		
+		void insert (T newContents){
+			if(head == NULL){
+				insertHead(newContents);
+			}
+			else if(newContents <= head->getContents()){
+				insertHead(newContents);
+			}
+			else if(head->getNextNode() == NULL && newContents > head->getContents()){
+				insertTail(newContents);
+			}
+			else{
+				SLNode<T>* here = head;// set insertBeforeNode to the second node
+				SLNode<T>* previous = NULL;
+		
+				while(here->getNextNode() != NULL && here->getContents() < newContents){
+					previous = here;
+					here = here->getNextNode();
+				}
+				if(here->getNextNode() == NULL && here->getContents() < newContents){
+					insertTail(newContents);
+				}
+				else{
+					previous->setNextNode(new SLNode<T>(newContents));//create new node and set previous nextNode to new node
+					previous->getNextNode()->setNextNode(here);//set new node's nextNode to here node
+					size++;
+				}
+			}
+		}
 		
 		/*
 		 * Function "removeFirst" remove the first appearance of the parameter value;
@@ -137,22 +158,25 @@ class SList
 		 * @param int valToRemove
 		 * @return bool
 		 */
-		bool removeFirst (T valToRemove)
-		{
-			SLNode<T>* tmpNode = NULL;
-			SLNode<T>* previousNode = NULL;
-			if(findValue(valToRemove) == NULL)
-			{
-				return false;
+		bool removeFirst (T valToRemove){
+			SLNode<T>* previous = findValue(valToRemove);//will be head or the pointer of previous node of the value found
+			SLNode<T>* nodeToRemove = NULL;
+			SLNode<T>* after = NULL;
+			
+			if(previous == head && head->getContents() == valToRemove){
+				removeHead();
+				return true;
 			}
-			else
-			{
-				previousNode = findValue(valToRemove);
-				tmpNode =(previousNode->getNextNode())->getNextNode(); // save the nextNode of the node to be removed
-				delete previousNode->getNextNode(); //remove the node
-				previousNode->setNextNode(tmpNode);  //store next node from removed node to previous node		
+			else if(previous != NULL ){
+				nodeToRemove = previous->getNextNode();// save node to be removed
+				after = nodeToRemove->getNextNode();
+				previous->setNextNode(after);
+				delete nodeToRemove; //remove the node
 				size--;
 				return true;
+			}
+			else{
+				return false;
 			}
 		}
 						  
@@ -161,19 +185,17 @@ class SList
 	     * associated with all nodes
 	     * @return void
 	     */						  
-	    void clear ()
-		{  
-			unsigned int lmt = size;
-			for(unsigned int cnt = 0; cnt < lmt; cnt++)
+	    void clear (){
+			while(head != NULL){
 				removeHead();
+			}
 		}		
 	    
 	    /*
 	     * Function "getSize" Get the size of the list
 	     * @return int 
 	     */
-	 	unsigned int getSize () const
-		{
+	 	unsigned int getSize () const{
 			return size;    
 		}
 	 	
@@ -184,82 +206,48 @@ class SList
 	     * empty list
 	     * @return string
 	 	 */
-        string toString () const
-		{
-			SLNode<T>* here;
-			stringstream outString;
-			
-			here = head;
-			
-			if(size == 0)
+        string toString () const{
+			if(head == NULL){
 				return "";
-			else
-				for(unsigned int cnt = 0; cnt < size; cnt++)
-				{
-					if(cnt == 0)
-						outString << here->getContents();
-					else 
-						outString << "," << here->getContents();
-					here = here->getNextNode();
-				}
-				   
-				return outString.str();
-		}
-
-		/*
-		 *
-		 */
-		void bubbleSort ()
-		{
-			SLNode<T>* hereNode = head;
-			bool swapped = true;
-			while(swapped)
-			{
-				swapped = false;
-				while(hereNode->getNextNode() != NULL)
-				{
-					if(hereNode->getContents() > (hereNode->getNextNode())->getContents())
-					{
-						swapped = swapValues(hereNode);
+			}
+			else{
+				stringstream ss;
+				for(SLNode<T>* cnt = head; cnt != NULL; cnt = cnt->getNextNode()){
+					ss << cnt->getContents();
+					if(cnt->getNextNode() != NULL){
+						ss << ',';
 					}
-					hereNode = hereNode->getNextNode();
 				}
-
+				return ss.str();
 			}
 		}
 
-		/*
-		 *
-		 */
-		bool swapValues (SLNode<T>* hereNode)
-		{
-			T tmpVal = hereNode->getContents ();
-			hereNode->setContents((hereNode->getNextNode())->getContents());
-			(hereNode->getNextNode())->setContents(tmpVal);
-		 
-			return true;
-		}
-		
 		/*
 		 * Function "findValue" find the first given occurrence of a value
 		 * in a linked list
 		 * @return node pointer
 		 */
-		SLNode<T>* findValue(T valToFind)
-		{
-			SLNode<T>* previousNode = head;
-			SLNode<T>* hereNode = head;
-			for(unsigned int cnt=0; cnt < size; cnt++)
-				if(hereNode->getContents() == valToFind)
-				{
-					return previousNode;
+		SLNode<T>* findValue(T valToFind){
+			if(head != NULL && head->getContents() == valToFind){
+				return head;//found value at head
+			}
+			else if(head != NULL){
+				SLNode<T>* previous = NULL;
+				SLNode<T>* here = head;
+				while(here->getContents() != valToFind && here->getNextNode() != NULL){
+					previous = here;
+					here = here->getNextNode();
 				}
-				else
-				{
-					previousNode = hereNode;
-					hereNode = hereNode->getNextNode();
+				if(here->getContents() == valToFind){
+					return previous;//found value
 				}
-			return NULL;
+				else{
+					return NULL;//end of list and value not found
+				}
+			}
+			else{
+				return NULL;//empty list
+			}
 		}
 		
 		/*

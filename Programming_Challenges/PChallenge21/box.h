@@ -1,6 +1,6 @@
 /*
  * Programming challenge 21
- * Demostrates the use of templates in a class
+ * Demonstrates the use of templates in a class
  * Donald Wiley
  * box.h
  * created 3/24/2014
@@ -15,8 +15,7 @@
  using namespace std;
  
  template <typename T>
- class Box
- {
+ class Box{
 	public:
 	
 		/*
@@ -58,13 +57,11 @@ Box <T>::Box(T newContents)
 {}
 
 template <typename T>
-T Box <T>::getContents()
-{
+T Box <T>::getContents(){
 	return contents;
 }
 
 template <typename T>
-void Box<T>::setContents(T newContents)
-{
+void Box<T>::setContents(T newContents){
 	contents = newContents;
 }

@@ -7,6 +7,7 @@
  * Donald Wiley
  * created 03/29/2014
  * modified 03/29/2014
+ * modified 04/08/2014
  */
  
 # pragma once
@@ -14,8 +15,7 @@
 using namespace std;
 
 template <typename T>
-class SLNode
-{
+class SLNode{
     public:
 
         /*
@@ -33,8 +33,7 @@ class SLNode
         /* 
          * destructor, sets nextNode to NULL
          */
-	    virtual ~SLNode()
-		{
+	    virtual ~SLNode(){
 			nextNode = NULL;
 		}
 	    
@@ -43,8 +42,7 @@ class SLNode
 	     * @param int newContents 
 	     * @return void
 	     */
-        void setContents (T newContents)
-		{
+        void setContents (T newContents){
 			contents = newContents;
 		}
         
@@ -54,8 +52,7 @@ class SLNode
          * in contents of this SLNode
 		 * @return typename T
          */
-        T getContents () const
-		{
+        T getContents () const{
 			return contents;
 		}
 	
@@ -64,8 +61,7 @@ class SLNode
 	     * @param SLNode* newNextNode 
 	     * @return void
 	     */
-        void setNextNode (SLNode* newNextNode)
-		{
+        void setNextNode (SLNode* newNextNode){
 			nextNode = newNextNode; 
 		}
         
@@ -74,8 +70,7 @@ class SLNode
          * @return a pointer with address of the next node
          */
         
-		SLNode<T>* getNextNode() const
-		{
+		SLNode<T>* getNextNode() const{
 			return nextNode;   
 		}
          
