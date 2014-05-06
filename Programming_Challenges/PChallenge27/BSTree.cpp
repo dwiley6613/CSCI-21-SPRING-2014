@@ -104,16 +104,15 @@ void BSTree::clear(BSTNode*& tmpRoot){
 		delete tmpRoot;
 		tmpRoot = NULL;
 		size--;
-	
 	}
 }
 		 
- void BSTree::inOrder(BSTNode* rootNode){
+void BSTree::inOrder(BSTNode* rootNode){
 	if(rootNode != NULL){
 
 		inOrder(rootNode->getLeftChild());
 		cout << rootNode->getContents() << " ";
 		inOrder(rootNode->getRightChild());
 	}
- }
+}
  
