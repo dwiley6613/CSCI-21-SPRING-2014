@@ -97,7 +97,7 @@ class BSTree
 		 * @param T data
 		 * @return pointer
 		 */
-		BSTNode<T>* get(T data){
+		T* get(T data){
 			return get(data, root);
 		}
 		
@@ -111,17 +111,17 @@ class BSTree
 		 * @param int BSTNode*&
 		 * @return bool
 		 */
-		bool insert(T newContents, BSTNode<T>*& tmpRoot){
+		bool insert(T newWord, BSTNode<T>*& tmpRoot){
 			if(tmpRoot == NULL){
-				tmpRoot = new BSTNode<T>(newContents);
+				tmpRoot = new BSTNode<T>(newWord);
 				size++;
 				return true;
 			}
-			else if(newContents < tmpRoot->getContents()){
-				return insert(newContents, tmpRoot->getLeftChild());
+			else if(newWord < tmpRoot->getContents()){
+				return insert(newWord, tmpRoot->getLeftChild());
 			}
-			else if(newContents > tmpRoot->getContents()){
-				return insert(newContents, tmpRoot->getRightChild());
+			else if(newWord > tmpRoot->getContents()){
+				return insert(newWord, tmpRoot->getRightChild());
 			}
 			else{
 				return false;
@@ -134,16 +134,16 @@ class BSTree
 		 * @param T value DSTNode*& root
 		 * @return bool
 		 */
-		bool remove(T value, BSTNode<T>*& tmpRoot){
+		bool remove(T word, BSTNode<T>*& tmpRoot){
 			BSTNode<T>* tmpNode = tmpRoot;
 			if(tmpRoot == NULL){
 				return false;
 			}
-			else if(value < tmpRoot->getContents()){
-				return remove(value, tmpRoot->getLeftChild());
+			else if(word < tmpRoot->getContents()){
+				return remove(word, tmpRoot->getLeftChild());
 			}
-			else if(value > tmpRoot->getContents()){
-				return remove(value, tmpRoot->getRightChild());
+			else if(word > tmpRoot->getContents()){
+				return remove(word, tmpRoot->getRightChild());
 			}
 			else{
 				if(tmpRoot->getLeftChild() == NULL){
@@ -203,7 +203,7 @@ class BSTree
 		void inOrder(BSTNode<T>* rootNode){
 			if(rootNode != NULL){
 				inOrder(rootNode->getLeftChild());
-				cout << rootNode->getContents() << " ";
+				cout << rootNode->getContents() << endl;
 				inOrder(rootNode->getRightChild());
 			}
 		}
@@ -216,9 +216,9 @@ class BSTree
 		  */
 		void reverseOrder(BSTNode<T>* rootNode){
 			if(rootNode != NULL){
-				reverseOrder(rootNode->getLeftChild());
 				reverseOrder(rootNode->getRightChild());
-				cout << rootNode->getContents() << " ";
+				cout << rootNode->getContents() << endl;
+				reverseOrder(rootNode->getLeftChild());
 			}
 		}
 		
@@ -247,12 +247,12 @@ class BSTree
 		 * @param T data
 		 * @return pointer
 		 */
-		BSTNode<T>* get(T data, BSTNode<T>* tmpRoot){
+		T* get(T data, BSTNode<T>* tmpRoot){
 			if(tmpRoot == NULL){
 				return NULL;
 			}
 			else if(tmpRoot->getContents() == data){
-				return tmpRoot;
+				return &tmpRoot->getContents();
 			}
 			else if(data < tmpRoot->getContents()){
 				return get(data, tmpRoot->getLeftChild());

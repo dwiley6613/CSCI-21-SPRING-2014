@@ -4,7 +4,7 @@
  * Programming Project 4 - UNIT TEST
  * pp4.cpp
  * created 4/19/2014
- * modified 5/2/2014
+ * modified 5/7/2014
  * 
  */
 #include"Word.h"
@@ -84,18 +84,18 @@ bool processFile(string filename){
 					list = new BSTree<Word>;
 					listAlive = true;
 				}
-				cout << "LIST CREATED" << endl;
+				cout << "TREE CREATED" << endl;
 			}
             else if (str[0] == 'X'){
 				if(listAlive){
 					list->clear();
-					cout << "LIST CLEARED" << endl;
+					cout << "TREE CLEARED" << endl;
 				}
 				else if(!listAlive){
-					cout << "MUST CREATE LIST INSTANCE\n";
+					cout << "MUST CREATE TREE INSTANCE\n";
 				}
 				else{
-					cout << "LIST EMPTY\n";
+					cout << "TREE EMPTY\n";
 				}
 			}
             else if (str[0] == 'D'){
@@ -103,35 +103,42 @@ bool processFile(string filename){
 					delete list;
 					list = NULL;
 					listAlive = false;
-					cout << "LIST DELETED" << endl;
+					cout << "TREE DELETED" << endl;
 					
 				}
 				else{
-					cout << "MUST CREATE LIST INSTANCE\n";
+					cout << "MUST CREATE TREE INSTANCE\n";
 				}
 			}
             else if (str[0] == 'I'){
 				if(listAlive){
 					stringstream ss(str.substr(2));
 					ss >> data;
-					list->insert(data);
-					cout << "VALUE " << data << " INSERTED" << endl;
+					if(!list->find(Word(data))){
+						list->insert(Word(data));
+						cout << "WORD " << data << " INSERTED" << endl;
+					}
+					else{
+						list->get(Word(data))->incCount();
+						cout << "WORD " << data << " INCREMENTED" << endl;
+					}
+					
 				}
 				else if(!listAlive){
-					cout << "MUST CREATE LIST INSTANCE\n";
+					cout << "MUST CREATE TREE INSTANCE\n";
 				}
 				else{
-					cout << "LIST EMPTY\n";
+					cout << "TREE EMPTY\n";
 				}
 			}
 			else if (str[0] == 'F'){
 				if(!listAlive){
-					cout << "MUST CREATE LIST INSTANCE\n";
+					cout << "MUST CREATE TREE INSTANCE\n";
 				}
 				else if(list != NULL and list->getSize() != 0){
 					stringstream ss(str.substr(2));
 					ss >> data;
-					if(list->find(data)){
+					if(list->find(Word(data))){
 						cout << "FOUND " << data << endl;
 					}
 					else{
@@ -139,7 +146,7 @@ bool processFile(string filename){
 					}
 				}
 				else{
-					cout << "LIST EMPTY\n";
+					cout << "TREE EMPTY\n";
 				}
 			}
 			/*else if (str[0] == 'A'){
@@ -170,74 +177,74 @@ bool processFile(string filename){
 				}
 			}*/
 			else if (str[0] == 'R'){
-				if(listAlive){
+				if(!listAlive){
+					cout << "MUST CREATE TREE INSTANCE\n";
+				}
+				else if(list != NULL and list->getSize() != 0){
 					stringstream ss(str.substr(2));
 					ss >> data;
-					if(list->remove(data)){
-						cout << "VALUE " << data << " REMOVED" << endl;
+					if(list->remove(Word(data))){
+						cout << "REMOVED " << data << endl;
 					}
 					else{
-						cout << "VALUE " << data << " NOT FOUND\n";
+						cout << data << " NOT FOUND\n";
 					}
 				}
-				else if(!listAlive){
-					cout << "MUST CREATE LIST INSTANCE\n";
-				}
 				else{
-					cout << "LIST EMPTY\n";
+					cout << "TREE EMPTY\n";
 				}
 			}
 			else if (str[0] == 'G'){
-				if(listAlive){
+				if(!listAlive){
+					cout << "MUST CREATE TREE INSTANCE\n";
+				}
+				else if(list != NULL && list->getSize() != 0){
 					stringstream ss(str.substr(2));
 					ss >> data;
-					if(list->get(data)){
-						cout << "VALUE " << data << " FOUND" << endl;
+					Word* tmpWord;
+					tmpWord = list->get(Word(data));
+					if(tmpWord != NULL){
+						cout << "GOT " << *tmpWord << endl;
 					}
 					else{
-						cout << "VALUE " << data << " NOT FOUND\n";
+						cout << data << " NOT FOUND\n";
 					}
 				}
-				else if(!listAlive){
-					cout << "MUST CREATE LIST INSTANCE\n";
-				}
 				else{
-					cout << "LIST EMPTY\n";
+					cout << "TREE EMPTY\n";
 				}
 			}
 			else if (str[0] == 'N'){
 				if(listAlive){
-					cout << "LIST SIZE IS " << list->getSize() << endl;
+					cout << "TREE SIZE IS " << list->getSize() << endl;
 				}
 				else if(!listAlive){
-					cout << "MUST CREATE LIST INSTANCE\n";
+					cout << "MUST CREATE TREE INSTANCE\n";
 				}
 				else{
-					cout << "LIST EMPTY\n";
+					cout << "TREE EMPTY\n";
 				}
 			}
 			else if (str[0] == 'O'){
 				if(!listAlive){
-					cout << "MUST CREATE LIST INSTANCE\n";
+					cout << "MUST CREATE TREE INSTANCE\n";
 				}
 				else if(listAlive && list != NULL && list->getSize() > 0){
 					list->inOrder();
-					cout << endl;
 				}
 				else{
-					cout << "LIST EMPTY\n";
+					cout << "TREE EMPTY\n";
 				}
 			}
 			else if (str[0] == 'E'){
 				if(!listAlive){
-					cout << "MUST CREATE LIST INSTANCE\n";
+					cout << "MUST CREATE TREE INSTANCE\n";
 				}
 				else if(listAlive && list != NULL && list->getSize() > 0){
 					list->reverseOrder();
-					cout << endl;
 				}
 				else{
-					cout << "LIST EMPTY\n";
+					cout << "TREE EMPTY\n";
 				}
 			}
             else{
