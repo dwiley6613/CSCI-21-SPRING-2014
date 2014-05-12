@@ -78,7 +78,7 @@ class BSTree
 		 * @param int value DSTNode*& root
 		 * @return bool
 		 */
-		bool remove(int value, BSTNode*& tmpRoot);
+		bool remove(const int& value, BSTNode*& tmpRoot);
 		
 		/*
 		 * function void removeMax (int&, BSTNode*&), helper function for private remove

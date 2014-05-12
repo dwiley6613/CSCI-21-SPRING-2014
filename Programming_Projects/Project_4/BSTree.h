@@ -159,7 +159,6 @@ class BSTree
 			}
 		}
 
-		
 		/*
 		 * function void removeMax (T&, BSTNode<T>*&), helper function for private remove
 		 * @param T& value BSTNode*& tmpRoot
