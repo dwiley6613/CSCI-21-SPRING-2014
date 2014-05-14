@@ -258,7 +258,7 @@ class SList{
 		bool removeAll(T valueToRemove)
 		{
 			bool removed = false;
-			for(int cnt = 0; cnt < size; cnt++)
+			for(unsigned int cnt = 0; cnt < size; cnt++)
 				if(removeFirst(valueToRemove))
 					removed = true;
 			return removed;
