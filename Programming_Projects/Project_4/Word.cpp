@@ -4,20 +4,22 @@
  * Programming Project 4
  * Word.cpp
  * created 5/2/2014
- * modified 5/2/2014
+ * modified 5/15/2014
  * 
  */
 
-#include"Word.h"
+#include"word.h"
 #include<cstdlib>
 #include<string>
 #include<iostream>
+#include<cmath>
+#include<algorithm>
  
 using namespace std;
 
 
 Word::Word()
-	:word("word"), count(1){}
+	:word(""), count(1){}
 
 Word::Word(string newWord)
 	:word(newWord), count(1){}
@@ -33,12 +35,35 @@ string Word::getWord() const{
 	return word;
 }
 
-void Word::incCount(){
+void Word::incrementCount(){
 	count++;
 }
 
-bool operator == (const Word& wordName_1, const Word& wordName_2){
-	if(wordName_1.word == wordName_2.word){
+unsigned int Word::getCount() const{
+	return count;
+}
+
+bool operator == (const Word& word1, const Word& word2){
+	string str1(word1.word);
+	string str2(word2.word);
+	if(str1.size() != str2.size()){
+		return false;
+	}
+	else{
+		for(unsigned int cnt = 0; cnt < str1.size(); cnt++){
+			if(toupper(str1[cnt]) != toupper(str2[cnt])){
+				return false;
+			}
+		}
+	}
+	return true;
+}
+
+bool operator < (const Word& word1, const Word& word2){
+	string str1(word1.word), str2(word2.word);
+	transform(str1.begin(), str1.end(), str1.begin(), ::toupper);
+	transform(str2.begin(), str2.end(), str2.begin(), ::toupper);
+	if(str1 < str2){
 		return true;
 	}
 	else{
@@ -46,17 +71,11 @@ bool operator == (const Word& wordName_1, const Word& wordName_2){
 	}
 }
 
-bool operator < (const Word& wordName_1, const Word& wordName_2){
-	if(wordName_1.word < wordName_2.word){
-		return true;
-	}
-	else{
-		return false;
-	}
-}
-
-bool operator > (const Word& wordName_1, const Word& wordName_2){
-	if(wordName_1.word > wordName_2.word){
+bool operator > (const Word& word1, const Word& word2){
+	string str1(word1.word), str2(word2.word);
+	transform(str1.begin(), str1.end(), str1.begin(), ::toupper);
+	transform(str2.begin(), str2.end(), str2.begin(), ::toupper);
+	if(str1 > str2){
 		return true;
 	}
 	else{
@@ -65,5 +84,5 @@ bool operator > (const Word& wordName_1, const Word& wordName_2){
 }
 
 ostream& operator << (ostream& out, const Word& src){
-	return out << src.word;
+	return out << src.word << " " << src.count;
 }

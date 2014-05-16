@@ -59,7 +59,7 @@ bool BSTree::insert(int newContents, BSTNode*& tmpRoot){
 		return false;
 	}
 }
-bool BSTree::remove(int value, BSTNode*& tmpRoot){
+bool BSTree::remove(const int& value, BSTNode*& tmpRoot){
 	BSTNode* tmpNode = tmpRoot;
 	if(tmpRoot == NULL){
 		return false;
