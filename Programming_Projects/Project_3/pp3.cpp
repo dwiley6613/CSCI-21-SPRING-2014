@@ -1,3 +1,12 @@
+//
+// Grader comments 2014.05.15
+// + 50: naming conventions good
+// + 50: header documentation good
+// + 50: formatting good
+// +145: driver -- see comments below; look for "grader comments" and "Rob"
+// +150: DLNode good
+// +300: DLList -- You're the only one in the class to get full marks on DLList. Nice work.
+// 
 /*
  * Programming Programming Project 3 - UNIT TEST
  * Demonstrates the use of a templated doubly  linked list implemented in classes
@@ -45,6 +54,10 @@ int main (int argc, char* argv[])
 	return 0;
 }
 
+//
+// Grader comments 2014.05.15
+// -  5: A & Z should report "LIST EMPTY", not "VALUE  LIST EMPTY"
+//
 bool processIntFile(string filename)
 {
 	

@@ -1,4 +1,4 @@
-Flag = -Wall -Wextra -Werror -pedantic
+Flag = -Wall -Wextra -Werror -pedantic -Wno-newline-eof
 
 pp3: pp3.o
 	g++ $(Flag) pp3.o -o pp3
