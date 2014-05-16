@@ -4,12 +4,12 @@
  * Programming Project 4
  * BSTree.h
  * created 4/19/2014
- * modified 5/2/2014
+ * modified 5/15/2014
  * stackoverflow.com
  */
  
 #pragma once
-#include"BSTNode.h"
+#include"bstnode.h"
 #include<cstdlib>
 #include<string>
 #include<iostream>
@@ -117,10 +117,10 @@ class BSTree
 				size++;
 				return true;
 			}
-			else if(newWord < tmpRoot->getContents()){
+			else if(newWord < tmpRoot->getData()){
 				return insert(newWord, tmpRoot->getLeftChild());
 			}
-			else if(newWord > tmpRoot->getContents()){
+			else if(newWord > tmpRoot->getData()){
 				return insert(newWord, tmpRoot->getRightChild());
 			}
 			else{
@@ -134,15 +134,15 @@ class BSTree
 		 * @param T value DSTNode*& root
 		 * @return bool
 		 */
-		bool remove(T word, BSTNode<T>*& tmpRoot){
+		bool remove(const T& word, BSTNode<T>*& tmpRoot){
 			BSTNode<T>* tmpNode = tmpRoot;
 			if(tmpRoot == NULL){
 				return false;
 			}
-			else if(word < tmpRoot->getContents()){
+			else if(word < tmpRoot->getData()){
 				return remove(word, tmpRoot->getLeftChild());
 			}
-			else if(word > tmpRoot->getContents()){
+			else if(word > tmpRoot->getData()){
 				return remove(word, tmpRoot->getRightChild());
 			}
 			else{
@@ -153,7 +153,7 @@ class BSTree
 					size--;
 				}
 				else{
-					removeMax(tmpRoot->getContents(), tmpRoot->getLeftChild());
+					removeMax(tmpRoot->getData(), tmpRoot->getLeftChild());
 				}
 				return true;
 			}
@@ -167,7 +167,7 @@ class BSTree
 		void removeMax(T& value, BSTNode<T>*& tmpRoot){
 			BSTNode<T>* maxNode = tmpRoot;
 			if(tmpRoot->getRightChild() == NULL){
-				value = maxNode->getContents();
+				value = maxNode->getData();
 				tmpRoot = maxNode->getLeftChild();
 				delete maxNode;
 				size--;
@@ -202,7 +202,7 @@ class BSTree
 		void inOrder(BSTNode<T>* rootNode){
 			if(rootNode != NULL){
 				inOrder(rootNode->getLeftChild());
-				cout << rootNode->getContents() << endl;
+				cout << rootNode->getData() << endl;
 				inOrder(rootNode->getRightChild());
 			}
 		}
@@ -216,7 +216,7 @@ class BSTree
 		void reverseOrder(BSTNode<T>* rootNode){
 			if(rootNode != NULL){
 				reverseOrder(rootNode->getRightChild());
-				cout << rootNode->getContents() << endl;
+				cout << rootNode->getData() << endl;
 				reverseOrder(rootNode->getLeftChild());
 			}
 		}
@@ -230,10 +230,10 @@ class BSTree
 			if(tmpRoot == NULL){
 				return false;
 			}
-			else if(tmpRoot->getContents() == data){
+			else if(tmpRoot->getData() == data){
 				return true;
 			}
-			else if(data < tmpRoot->getContents()){
+			else if(data < tmpRoot->getData()){
 				return find(data, tmpRoot->getLeftChild());
 			}
 			else{
@@ -250,10 +250,10 @@ class BSTree
 			if(tmpRoot == NULL){
 				return NULL;
 			}
-			else if(tmpRoot->getContents() == data){
-				return &tmpRoot->getContents();
+			else if(tmpRoot->getData() == data){
+				return &tmpRoot->getData();
 			}
-			else if(data < tmpRoot->getContents()){
+			else if(data < tmpRoot->getData()){
 				return get(data, tmpRoot->getLeftChild());
 			}
 			else{

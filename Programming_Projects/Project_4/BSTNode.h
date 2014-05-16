@@ -4,7 +4,7 @@
  * Programming Project 4
  * BSTNode.h
  * created 4/19/2014
- * modified 5/2/2014
+ * modified 5/15/2014
  * 
  */
  #pragma once
@@ -19,17 +19,17 @@
 	public:
 	
 		/*
-         * default constructor, sets values left and right child to (NULL) and contents(0)
+         * default constructor, sets values left and right child to (NULL) and data(0)
          */
 		BSTNode()
 			:leftChild(NULL), rightChild(NULL){}
 		
 		/*
-         * overloaded constructor, int parameter assigned to contents
-		 * @param T newcontents
+         * overloaded constructor, int parameter assigned to data
+		 * @param T newData
          */
-        BSTNode(T newContents)
-			:leftChild(NULL), rightChild(NULL), contents(newContents){}
+        BSTNode(T newData)
+			:leftChild(NULL), rightChild(NULL), data(newData){}
         
         /* 
          * destructor
@@ -38,27 +38,27 @@
 		}
 		
 		/*
-		 * set contents of node to newContents
-		 * @param T newContents
+		 * set contents of node to newdata
+		 * @param T newData
 		 * @return void
 		 */
-		void setContents(T newContents){
-			contents = newContents;
+		void setData(T newData){
+			data = newData;
 		}
 		
 		/*
-		 * get the value of contents
-		 * @return T contents
+		 * get the value of data
+		 * @return T data
 		 */
-		T getContents() const{
-			return contents;
+		T getData() const{
+			return data;
 		}
 		 /*
-		 * get the value of contents
-		 * @return T& contents
+		 * get the value of data
+		 * @return T& data
 		 */
-		T& getContents(){
-			return contents;
+		T& getData(){
+			return data;
 		}
 		 
 		 /*
@@ -112,5 +112,5 @@
 	private:
 		BSTNode* leftChild;
 		BSTNode* rightChild;
-		T contents;
+		T data;
  };

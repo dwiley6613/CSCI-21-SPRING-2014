@@ -4,7 +4,7 @@
  * Programming Project 4
  * Word.h
  * created 5/2/2014
- * modified 5/2/2014
+ * modified 5/15/2014
  * 
  */
  
@@ -50,10 +50,16 @@ class Word
 		string getWord() const;
 		
 		/*
+		 * function getCount gets the count of words
+		 * @return unsigned int
+		 */
+		 unsigned int getCount() const; 
+		
+		/*
 		 * function incCount increment the count of words
 		 * @return void
 		 */
-		void incCount();
+		void incrementCount();
 
 		/*
 		 * Friend function that overloads the comparison operator

@@ -4,11 +4,11 @@
  * Programming Project 4
  * Word.cpp
  * created 5/2/2014
- * modified 5/7/2014
+ * modified 5/15/2014
  * 
  */
 
-#include"Word.h"
+#include"word.h"
 #include<cstdlib>
 #include<string>
 #include<iostream>
@@ -19,7 +19,7 @@ using namespace std;
 
 
 Word::Word()
-	:word("word"), count(1){}
+	:word(""), count(1){}
 
 Word::Word(string newWord)
 	:word(newWord), count(1){}
@@ -35,8 +35,12 @@ string Word::getWord() const{
 	return word;
 }
 
-void Word::incCount(){
+void Word::incrementCount(){
 	count++;
+}
+
+unsigned int Word::getCount() const{
+	return count;
 }
 
 bool operator == (const Word& word1, const Word& word2){
