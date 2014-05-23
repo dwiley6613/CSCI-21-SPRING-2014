@@ -52,6 +52,19 @@ unsigned int Box::getPrizeCount() const
 {
     return prizeCount;    
 }
+
+//
+// Grader comments 2014.04.11
+// 1. Don't duplicate comments
+// 2. Need blank lines between function implementations
+// 3. Formatting in this function inconsistent with the
+//		formatting throughout the rest of the code.
+//
+// See also prize.cpp
+//
+// Deducted 10 points
+//
+
 //addPrize: parameters prize (Prize), return value (bool); place prize in prizes array if there is space and return true, else return false
 bool Box::addPrize (Prize newPrize)
 {

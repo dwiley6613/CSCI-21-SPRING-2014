@@ -18,6 +18,13 @@ class Prize
 	public:
 	
 		// CODE HERE -- DECLARE FUNCTIONS
+		//
+		// Grader comments 2014.03.06
+		//
+		// Boyd wants function implementations outside the class declaration.
+		// Minus 10%. Also, strange indentation lines 79 - 82. Usually costs
+		// another 10% but I think Boyd will let me leave you alone just this once. --Rob
+		//
 	
 		/*
 		 * Constructor.

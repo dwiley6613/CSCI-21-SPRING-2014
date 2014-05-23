@@ -1,3 +1,9 @@
+//
+// Grader comments 2014.05.14
+// Full marks on DLList.h. Nice work.
+// I added const to all of your get... functions, but that was
+// just to get my test harness to work.
+//
 /*
  *
  * Programming Project 3
@@ -228,7 +234,7 @@ class DLList
 		 * Function "getFront" return value of the contents of the head node
 		 * @return typename contents
 		 */
-	 	T getFront(){
+	 	T getFront() const {
 			if (head == NULL)
 				throw string("LIST EMPTY");
 			else{
@@ -240,7 +246,7 @@ class DLList
 		 * Function "getBack" return value of the contents of the tail node
 		 * @return typename contents
 		 */
-	 	T getBack(){
+	 	T getBack() const {
 			if (tail == NULL)
 				throw string("LIST EMPTY");
 			else{
